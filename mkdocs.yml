@@ -54,5 +54,8 @@ markdown_extensions:
       generic: true
 extra_css:
   - stylesheets/extra.css
+extra_javascript:
+  - 'https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js'
+  - code/parse.js
 extra_files:
-  - assets/mkdocs.yml
+  - code/mkdocs.yml
