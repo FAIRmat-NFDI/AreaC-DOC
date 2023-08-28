@@ -27,15 +27,5 @@ jobs:
         run: pip install mkdocs-bibtex
       - name: Installing python-markdown-math from repository
         run: pip install https://github.com/mitya57/python-markdown-math/archive/master.zip
-      - name: List files before copy
-        run: |
-          ls -al docs
-          ls -al docs/assets
-      - name: Copy mkdocs.yml to assets
-        run: cp mkdocs.yml docs/mkdocs.yml
-      - name: List files after copy
-        run: |
-          ls -al docs
-          ls -al docs/assets
       - name: Deploying GH page for mkdocs
         run: mkdocs gh-deploy --force

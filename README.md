@@ -13,6 +13,13 @@ We organized the information in correlated sections:
 8. [Current features.](https://fairmat-nfdi.github.io/AreaC-DOC/current_features/intro/)
 
 
+### Updating `docs/code/mkdocs.yaml` before pushing
+
+In order to show the node graph in the documentation page, the file `docs/code/mkdocs.yml` has to be updated if the main one under root is changed (e.g., when adding a new sub-section or content to `nav`). We suggest you to directly copy the new `mkdocs.yml` in root to `docs/code/mkdocs.yml` before pushing by doing:
+```
+cp mkdocs.yml docs/code/mkdocs.yml
+```
+
 ### How to launch locally for debugging
 
 In the workflow-documentation directory, create your own virtual environment with Python3.9:
