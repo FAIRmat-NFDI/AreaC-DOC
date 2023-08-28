@@ -5,6 +5,7 @@ fetch('assets/mkdocs.yml')
     const jsyaml = window.jsyaml
     const cleanText = text.replace(/!!python\/[a-zA-Z:,_]+/g, '')  // jsyaml needs to clean up !!python labels or it does not work
     const yamlData = jsyaml.load(cleanText)
+    // Getting the nav data from the mkdocs.yml file to plot the graph
     const navigationData = yamlData.nav
 
     // Initialize the Cytoscape instance here
@@ -27,46 +28,82 @@ fetch('assets/mkdocs.yml')
         }
       ],
       layout: {
-        name: 'grid'
+        name: 'cose', // use 'cose' for force-directed layout
+        idealEdgeLength: 1,
+        nodeOverlap: 1000
       }
     })
 
     // Function to add nodes and edges to the graph
     function populateGraph(navData, parent = 'Home') {
-      Object.keys(navData).forEach(key => {
-        const label = key
-        const value = navData[key]
-    
-        // Check if node already exists
-        if (cy.getElementById(label).empty()) {
-          // Add node
-          cy.add({
-            data: { id: label, label: label }
-          })
-        }
-    
-        // Check if edge already exists
-        const edgeId = `${parent}_${label}`;
-        if (cy.getElementById(edgeId).empty()) {
-          // Add edge
-          cy.add({
-            data: {
-              id: edgeId,
-              source: parent,
-              target: label
-            }
-          })
-        }
-    
-        if (typeof value === 'object') {
-          populateGraph(value, label);
-        }
-      })
+      if (Array.isArray(navData)) {
+        // If navData is an array, loop through each element
+        navData.forEach(item => {
+          const label = Object.keys(item)[0]  // The key is the label
+          const value = item[label]  // The value is another object or array
+          addNodeAndEdge(label, value, parent)
+        });
+      } else {
+        // If navData is an object, loop through each property
+        Object.keys(navData).forEach(label => {
+          const value = navData[label]
+          addNodeAndEdge(label, value, parent)
+        });
+      }
+      // Re-run layout with potentially modified settings
+      cy.layout({
+        name: 'cose',
+        idealEdgeLength: 1,
+        nodeOverlap: 1000
+      }).run()
     }
+
+    // Function to add a single node and edge to the graph
+    function addNodeAndEdge(label, value, parent) {
+      // Check if the node label is 'Introduction'
+      if (label === 'Introduction') {
+        // Update the introPath of the parent node
+        cy.getElementById(parent).data('introPath', value)
+        return
+      }
+
+      // Check if node already exists
+      if (cy.getElementById(label).empty()) {
+        // Add node
+        cy.add({
+          data: {
+            id: label,
+            label: label
+          }
+        })
+      }
+
+      // Check if edge already exists
+      const edgeId = `${parent}_${label}`
+      if (cy.getElementById(edgeId).empty()) {
+        // Add edge
+        cy.add({
+          data: {
+            id: edgeId,
+            source: parent,
+            target: label
+          }
+        })
+      }
+
+      if (typeof value === 'object') {
+        populateGraph(value, label)
+        cy.layout({ name: 'cose' }).run()
+      }
+    }
+
 
     // Populate the initial graph
     cy.add({
-      data: { id: 'Home', label: 'Home' }
+      data: {
+        id: 'Home',
+        label: 'Home'
+      }
     })
 
     populateGraph(navigationData)
@@ -74,8 +111,12 @@ fetch('assets/mkdocs.yml')
     // Add click event to nodes
     cy.on('tap', 'node', function(evt){
       const nodeId = evt.target.id()
+      const introPath = evt.target.data('introPath')  // Get introPath if it exists
+      // Choose URL based on whether introPath exists
+      const newUrl = introPath ? introPath.replace('.md', '') : `${nodeId.replace(/ /g, '_').toLowerCase()}/intro`
+
       // Assuming you want to navigate to the new page
-      window.location.href = `${nodeId}.html`
+      window.location.href = newUrl
 
       // Clear existing graph
       cy.elements().remove()
@@ -86,6 +127,12 @@ fetch('assets/mkdocs.yml')
       })
 
       populateGraph(navigationData[nodeId], nodeId)
+      // Re-run layout
+      cy.layout({
+        name: 'cose',
+        idealEdgeLength: 1,
+        nodeOverlap: 1000
+      }).run()
     })
 
   })
