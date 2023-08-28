@@ -121,7 +121,7 @@ We can note several things about the content of this file:
 This will produce an extra entry with the following Overview content:
 
 <p align="center">
-    <img src="../assets/singlepoint.png" alt="NOMAD workflow schema" width="80%" title="NOMAD workflow schema">
+    <img src="assets/singlepoint.png" alt="NOMAD workflow schema" width="80%" title="NOMAD workflow schema">
 </p>
 
 Note that we are referencing sections which are lists. Thus, in each case we have to be careful to reference the correct section for inputs and outputs (example: a `GeometryOptimization` workflow calculation will have the "Input structure" as `run[0].system[0]`, while the "Output calculation" would also contain `run[0].system[-1]`, and all intermediate steps must input/output the corresponding section system).
@@ -156,7 +156,7 @@ workflow2:
 which in turn produces a similar workflow than before, but with an extra input node:
 
 <p align="center">
-    <img src="../assets/singlepoint_methodadded.png" alt="SinglePoint workflow visualizer with Method added" width="80%" title="SinglePoint workflow visualizer with Method added">
+    <img src="assets/singlepoint_methodadded.png" alt="SinglePoint workflow visualizer with Method added" width="80%" title="SinglePoint workflow visualizer with Method added">
 </p>
 
 
@@ -229,7 +229,7 @@ We can note here:
 This workflow (`pressure1.archive.yaml`) file will then produce an entry with the following Overview page:
 
 <p align="center">
-    <img src="../assets/pressure1.png" alt="Pressure P1 workflow visualizer" width="80%" title="Pressure P1 workflow visualizer">
+    <img src="assets/pressure1.png" alt="Pressure P1 workflow visualizer" width="80%" title="Pressure P1 workflow visualizer">
 </p>
 
 Similarly, for P<sub>2</sub> we can upload a new `pressure2.archive.yaml` file with the same content, except when substituting 'pressure1' and 'p1' by their counterparts. This will produce a similar graph than the one showed before but for 'P2'.
@@ -317,7 +317,7 @@ Finally, `tasks` references the previous YAML schemas as follows:
 This will produce the following entry and its Overview page:
 
 <p align="center">
-    <img src="../assets/fullworkflow.png" alt="Full workflow visualizer" width="80%" title="Full workflow visualizer">
+    <img src="assets/fullworkflow.png" alt="Full workflow visualizer" width="80%" title="Full workflow visualizer">
 </p>
 
 
