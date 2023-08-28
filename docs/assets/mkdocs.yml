@@ -6,6 +6,7 @@ nav:
   - Home: index.md
   - Uploading and publishing data: 
     - Introduction: uploading_and_publishing_data/intro.md
+    - Creating an account: uploading_and_publishing_data/01_create_account.md
   - Custom schemas for new features: 
     - Introduction: custom_schemas_for_new_features/intro.md
   - Writing a parser plugin: 

@@ -1,6 +1,6 @@
-site_name: NOMAD Workflows Documentation
+site_name: NOMAD Documentation Computations
 site_description: |
-  NOMAD custom and automatic workflow documentation.
+  NOMAD Documentation for Computational data.
 site_author: FAIRmat consortium
 nav:
   - Home: index.md
@@ -56,6 +56,5 @@ extra_css:
   - stylesheets/extra.css
 extra_javascript:
   - 'https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js'
-  - code/parse.js
-extra_files:
-  - code/mkdocs.yml
+  - 'https://unpkg.com/cytoscape@3.19.1/dist/cytoscape.min.js'
+  - assets/js/parse.js
