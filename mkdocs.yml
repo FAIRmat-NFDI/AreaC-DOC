@@ -1,12 +1,16 @@
-site_name: NOMAD Workflows Documentation
+site_name: "NOMAD Documentation: Computational Calculations"
 site_description: |
-  NOMAD custom and automatic workflow documentation.
+  NOMAD Documentation for Computational data.
 site_author: FAIRmat consortium
+repo_url: https://github.com/FAIRmat-NFDI/AreaC-DOC
 nav:
   - Home: index.md
   - Uploading and publishing data: 
     - Introduction: uploading_and_publishing_data/intro.md
-    - Creating an account: uploading_and_publishing_data/01_create_account.md
+    - Uploading data: uploading_and_publishing_data/uploading_data.md
+    - Organizing data in datasets: uploading_and_publishing_data/organizing_data_in_datasets.md
+    - Processing: uploading_and_publishing_data/processing.md
+    - Extras: uploading_and_publishing_data/extras.md
   - Custom schemas for new features: 
     - Introduction: custom_schemas_for_new_features/intro.md
   - Writing a parser plugin: 
@@ -24,8 +28,18 @@ nav:
 theme:
   name: material
   palette:
-    primary: '#2A4CDF'
-    accent: '#008A67'
+    - media: "(prefers-color-scheme: light)"
+      # primary: '#2A4CDF'
+      # accent: '#008A67'
+      scheme: default
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
   font:
     text: 'Titillium Web'
   logo: assets/nomad-logo.png
@@ -56,6 +70,7 @@ extra_css:
   - stylesheets/extra.css
 extra_javascript:
   - 'https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js'
-  - code/parse.js
-extra_files:
-  - code/mkdocs.yml
+  - 'https://unpkg.com/cytoscape@3.19.1/dist/cytoscape.min.js'
+  # - assets/js/parse.js
+extra:
+  version: 0.1
