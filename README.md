@@ -33,6 +33,8 @@ Pip-install `mkdocs` and `mkdocs-material`:
 ```
 pip install mkdocs
 pip install mkdocs-material
+pip install mkdocs-bibtex
+pip install https://github.com/mitya57/python-markdown-math/archive/master.zip
 ```
 
 Launch locally:
