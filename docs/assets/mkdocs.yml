@@ -53,5 +53,3 @@ markdown_extensions:
       generic: true
 extra_css:
   - stylesheets/extra.css
-extra_files:
-  - assets/mkdocs.yml
