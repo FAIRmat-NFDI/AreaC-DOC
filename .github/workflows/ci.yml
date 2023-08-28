@@ -1,4 +1,4 @@
-name: deploy docs
+name: Deploy docs
 on:
   push:
     branches:
@@ -20,5 +20,12 @@ jobs:
           path: .cache
           restore-keys: |
             mkdocs-material-
-      - run: pip install mkdocs-material 
-      - run: mkdocs gh-deploy --force
+            mkdocs-bibtex-
+      - name: Installing mkdocs-material
+        run: pip install mkdocs-material 
+      - name: Installing mkdocs-bibtex
+        run: pip install mkdocs-bibtex
+      - name: Installing python-markdown-math from repository
+        run: pip install https://github.com/mitya57/python-markdown-math/archive/master.zip
+      - name: Deploying GH page for mkdocs
+        run: mkdocs gh-deploy --force
