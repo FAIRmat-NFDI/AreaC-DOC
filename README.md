@@ -44,6 +44,12 @@ pip install mkdocs-bibtex
 pip install https://github.com/mitya57/python-markdown-math/archive/master.zip
 ```
 
+Create a node_modules sub-folder by running:
+```
+npm install
+```
+This will install several JS packages important for the interactive graphs in the documentation page.
+
 Launch locally:
 ```
 mkdocs serve
