@@ -46,6 +46,10 @@ theme:
   favicon: assets/favicon.png
   features:
     - navigation.instant
+plugins:
+  - search
+  - bibtex:
+      bib_file: docs/assets/refs.bib
 markdown_extensions:
   - attr_list
   - md_in_html
