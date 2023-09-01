@@ -1,0 +1,1 @@
+# Quick guide for best practices for NOMAD development
