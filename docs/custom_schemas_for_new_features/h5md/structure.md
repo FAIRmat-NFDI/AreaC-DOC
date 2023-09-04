@@ -1,0 +1,389 @@
+H5MD root level
+---------------
+
+The root level of an H5MD structure holds a number of groups and is organized
+as follows:
+
+    H5MD root
+     \-- h5md
+     \-- (particles)
+     \-- (observables)
+     \-- (connectivity)
+     \-- (parameters)
+
+`h5md`
+:   A group that contains metadata and information on the H5MD structure
+    itself. It is the only mandatory group at the root level of H5MD.
+
+`particles`
+:   An optional group that contains information on each particle in the system,
+    e.g., a snapshot of the positions or the full trajectory in phase space.
+    The size of the stored data scales linearly with the number of particles
+    under consideration.
+
+`observables`
+:   An optional group that contains other quantities of interest, e.g.,
+    physical observables that are derived from the system state at given points
+    in time. The size of stored data is typically independent of the system
+    size.
+
+`connectivity`
+:   An optional group that contains the connectivity between particles.
+
+`parameters`
+:   An optional group that contains application-specific, custom data such as
+    control parameters or simulation scripts.
+
+In subsequent sections, the examples of HDF5 organization may start at the
+group level, omitting the display of `H5MD root`.
+
+H5MD metadata
+-------------
+
+A set of global metadata describing the H5MD structure is stored in the `h5md`
+group as attributes. The contents of the group is:
+
+    h5md
+     +-- version: Integer[2]
+     \-- author
+     |    +-- name: String[]
+     |    +-- (email: String[])
+     \-- creator
+          +-- name: String[]
+          +-- version: String[]
+
+`version`
+:   An attribute, of `Integer` datatype and of simple dataspace of rank 1 and
+    size 2, that contains the major version number and the minor version number
+    of the H5MD specification the H5MD structure conforms to.
+
+    The version *x.y.z* of the H5MD specification follows
+    [semantic versioning][semver] [@semantic_versioning]: A change of the major
+    version number *x* indicates backwards-incompatible changes to the file
+    structure. A change of the minor version number *y* indicates
+    backwards-compatible changes to the file structure. A change of the patch
+    version number *z* indicates changes that have no effect on the file
+    structure and serves to allow for clarifications or minor text editing of
+    the specification.
+
+    As the *z* component has no impact on the content of a H5MD file, the
+    `version` attribute contains only *x* and *y*.
+
+`author`
+:   A group that contains metadata on the person responsible for the simulation
+    (or the experiment) as follows:
+
+    `name`
+    :   An attribute, of fixed-length string datatype and of scalar
+        dataspace, that holds the author's real name.
+
+    `email`
+    :   An optional attribute, of fixed-length string datatype and
+        of scalar dataspace, that holds the author's email address of
+        the form `email@domain.tld`.
+
+`creator`
+:   A group that contains metadata on the program that created the H5MD
+    structure as follows:
+
+    `name`
+    :   An attribute, of fixed-length string datatype and of scalar
+        dataspace, that stores the name of the program.
+
+    `version`
+    :   An attribute, of fixed-length string datatype and of scalar
+        dataspace, that yields the version of the program.
+
+
+### Modules
+
+The H5MD specification can be complemented by modules specific to a
+domain of research.  A module may define additional data elements within the
+H5MD structure, add conditions that the data must satisfy, or define rules for
+their semantic interpretation. Multiple modules may be present, as long as
+their prescriptions are not contradictory. Each module is identified by a name
+and a version number.
+
+The modules that apply to a specific H5MD structure are stored as subgroups
+within the group `h5md/modules`. Each module holds its version number as an
+attribute, further module-specific information may be stored:
+
+    h5md
+     \-- (modules)
+          \-- <module1>
+          |    +-- version: Integer[2]
+          \-- <module2>
+          |    +-- version: Integer[2]
+          \-- ...
+
+`version`
+:   An attribute, of `Integer` datatype and of simple dataspace of rank 1 and
+    size 2, that contains the major version number and the minor version number
+    of the module.
+
+    The version *x.y.z* of an H5MD module follows [semantic versioning][semver]
+    [@semantic_versioning] and again only the components *x* and *y* are
+    stored, see `h5md/version` in "[H5MD metadata]."
+
+[semver]: http://semver.org/spec/v2.0.0.html
+
+
+Particles group
+---------------
+
+Information on each particle, i.e., particle trajectories, is stored in the
+`particles` group. The `particles` group is a container for subgroups that
+represent different subsets of the system under consideration, and it may hold
+one or several subgroups, as needed. These subsets may overlap and their union
+may be incomplete, i.e., not represent all particles of the simulation volume.
+The subgroups contain the trajectory data for each particle as time-dependent
+or time-independent data, depending on the situation. Each subgroup contains a
+specification of the simulation box, see below. For each dataset, the particle
+index is accommodated by the second (first, in the case of time-independence)
+array dimension.
+
+The contents of the `particles` group assuming `N` particles in `D`-dimensional
+space could be the following:
+
+    particles
+     \-- <group1>
+          \-- box
+          \-- (position)
+          |    \-- step: Integer[variable]
+          |    \-- time: Float[variable]
+          |    \-- value: <type>[variable][N][D]
+          \-- (image)
+          |    \-- step: Integer[variable]
+          |    \-- time: Float[variable]
+          |    \-- value: <type>[variable][N][D]
+          \-- (species: Enumeration[N])
+          \-- ...
+
+The following identifiers for H5MD elements are standardized:
+
+`position`
+:   An element that describes the particle positions as coordinate vectors of
+    `Float` or `Integer` type.
+
+    If the component $k$ of `box/boundary` (see [below](#simulation-box)) is set
+    to `none`, the data indicate for each particle the component $k$ of its
+    absolute position in space. If the component $k$ of `box/boundary` is set to
+    `periodic`, the data indicate for each particle the component $k$ of the
+    absolute position in space of an *arbitrary* periodic image of that particle.
+
+`image`
+:   An element that represents periodic images of the box as coordinate vectors
+    of `Float` or `Integer` type and allows one to compute for each particle its
+    absolute position in space. If `image` is present, `position` must be
+    present as well. For time-dependent data, the `step` and `time` datasets of
+    `image` must equal those of `position`, which must be accomplished by
+    hard-linking the respective datasets.
+
+    If the component $k$ of `box/boundary` (see [below](#simulation-box)) is set
+    to `none`, the values of the corresponding component $k$ of `image` serve as
+    placeholders. If the component $k$ of `box/boundary` is set to `periodic`,
+    for a cuboid box, the component $k$ of the absolute position of particle $i$
+    is computed as $R_{ik} = r_{ik} + L_k a_{ik}$, where $\vec r_i$ is taken
+    from `position`, $\vec a_i$ is taken from `image`, and $\vec L$ from
+    `box/edges`.
+
+`velocity`
+:   An element that contains the velocities for each particle as a vector of
+    `Float` or `Integer` type.
+
+`force`
+:   An element that contains the total forces (i.e., the accelerations
+    multiplied by the particle mass) for each particle as a vector of `Float`
+    or `Integer` type.
+
+`mass`
+:   An element that holds the mass for each particle as a scalar of `Float`
+    type.
+
+`species`
+:   An element that describes the species for each particle, i.e., its
+    atomic or chemical identity, as a scalar of `Enumeration` or `Integer`
+    data type. Particles of the same species are assumed to be identical with
+    respect to their properties and unbonded interactions.
+
+`id`
+:   An element that holds a scalar identifier for each particle of `Integer`
+    type, which is unique within the given particle subgroup. The `id` serves
+    to identify particles over the course of the simulation in the case when
+    the order of the particles changes, or when new particles are inserted and
+    removed. If `id` is absent, the identity of the particles is given by their
+    index in the `value` datasets of the elements within the same subgroup.
+
+    A *fill value* (see
+    [§ 6.6](http://www.hdfgroup.org/HDF5/doc/UG/11_Datatypes.html#Fvalues) in
+    [@HDF5_users_guide]) may be defined for `id/value` upon dataset creation.
+    When the identifier of a particle is equal to this user-defined value,
+    the particle is considered non-existing, the entry serves as a
+    placeholder. This permits the storage of subsystems whose number of
+    particles varies in time. For the case of varying particle number, the
+    dimension denoted by `[N]` above may be variable.
+
+`charge`
+:   An element that contains the charge associated to each particle as a
+    scalar, of `Integer` or `Float` type.
+
+    `charge` has the optional attribute `type` of fixed-length string datatype
+    and of scalar dataspace, possible values are `effective` and `formal`. In
+    the case `effective`, the charge is part of an effective description of the
+    interactions with the precise meaning depending on the underlying empirical
+    force fields or coarse-grained models.
+
+    In the case `formal`, the charge is the so-called "formal charge" assigned
+    to an atom (see <http://en.wikipedia.org/wiki/Formal_charge>) and must be
+    of `Integer` type. This case corresponds to the entries in PDB files (see
+    definition in the PDBx/mmCIF dictionary
+    <http://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v40.dic/Items/_atom_site.pdbx_formal_charge.html>).
+
+	If none of `effective` or `formal` describes the data properly, the
+    attribute `type` may be omitted.
+
+Simulation box
+--------------
+
+The specification of the simulation box is stored in the group `box`, which
+must be contained within each of the subgroups of the `particles` group.
+Storing the box information at several places reflects the fact that different
+subgroups may be sampled at different time grids. This way, the box information
+remains associated to a group of particles.  A specific requirement for `box`
+groups inside `particles` is that the `step` and `time` datasets exactly match
+those of the corresponding `position` groups, which must be accomplished by
+hard-linking the respective datasets.
+
+The spatial dimension and the boundary conditions of the box are stored as
+attributes to the `box` group, e.g., :
+
+    particles
+     \-- <group1>
+          \-- box
+               +-- dimension: Integer[]
+               +-- boundary: String[D]
+               \-- (edges)
+
+`dimension`
+:   An attribute that stores the spatial dimension `D` of the simulation box
+    and is of `Integer` datatype and scalar dataspace.
+
+`boundary`
+:   An attribute, of fixed-length string datatype and of simple dataspace of
+    rank 1 and size `D`, that specifies the boundary condition of the box along
+    each dimension. The values in `boundary` are either `periodic` or `none`:
+
+    `periodic` The simulation box is periodically continued along the given
+    dimension and serves as the unit cell for an infinite tiling of space.
+
+    `none` No boundary condition is imposed. This summarizes the situations of
+    open systems (i.e., an infinitely large box) and closed systems (e.g., due
+    to an impenetrable wall). For those components where `boundary` is set to
+    `none`, the corresponding values of `edges` serve as placeholders.
+
+Information on the geometry of the box edges is stored as an H5MD element,
+allowing for the box to be fixed in time or not.  Supported box shapes are the
+cuboid and triclinic unit cell, for other shapes a transformation to the
+triclinic shape may be considered [@Bekker:1997]. If all values in `boundary`
+are `none`, `edges` may be omitted.
+
+`edges`
+:   A `D`-dimensional vector or a `D` × `D` matrix, depending on the geometry
+    of the box, of `Float` or `Integer` type. If `edges` is a vector, it
+    specifies the space diagonal of a cuboid-shaped box. If `edges` is a
+    matrix, the box is of triclinic shape with the edge vectors given by the
+    rows of the matrix.
+
+    For a time-dependent box, a cuboid geometry is encoded by a dataset `value`
+    (within the H5MD element) of rank 2 (1 dimension for the time and 1 for the
+    vector) and a triclinic geometry by a dataset `value` of rank 3 (1
+    dimension for the time and 2 for the matrix).
+
+    For a time-independent box, a cuboid geometry is encoded by a dataset
+    `edges` of rank 1 and a triclinic geometry by a dataset of rank 2.
+
+For instance, a cuboid box that changes in time would appear as:
+
+    particles
+     \-- <group1>
+          \-- box
+               +-- dimension: Integer[]
+               +-- boundary: String[D]
+               \-- edges
+                    \-- step: Integer[variable]
+                    \-- time: Float[variable]
+                    \-- value: <type>[variable][D]
+
+where `dimension` is equal to `D`. A triclinic box that is fixed in time would
+appear as:
+
+    particles
+     \-- <group1>
+          \-- box
+               +-- dimension: Integer[]
+               +-- boundary: String[D]
+               \-- edges: <type>[D][D]
+
+where `dimension` is equal to `D`.
+
+Observables group
+-----------------
+
+Macroscopic observables, or more generally, averages of some property over many
+particles, are stored in the root group `observables`. Observables representing
+only a subset of the particles may be stored in appropriate subgroups similarly
+to the `particles` tree. Each observable is stored as an H5MD element. The
+shape of the corresponding dataset (the element itself for time-independent data
+and `value` for time-dependent data) is the tensor shape of the observable,
+prepended by a `[variable]` dimension for time-dependent data.
+
+The contents of the observables group has the following structure:
+
+    observables
+     \-- <observable1>
+     |    \-- step: Integer[variable]
+     |    \-- time: Float[variable]
+     |    \-- value: <type>[variable]
+     \-- <observable2>
+     |    \-- step: Integer[variable]
+     |    \-- time: Float[variable]
+     |    \-- value: <type>[variable][D]
+     \-- <group1>
+     |    \-- <observable3>
+     |         \-- step: Integer[variable]
+     |         \-- time: Float[variable]
+     |         \-- value: <type>[variable][D][D]
+     \-- <observable4>: <type>[]
+     \-- ...
+
+Connectivity group
+------------------
+
+The connectivity information is stored as tuples in the group
+`/connectivity`. The tuples are pairs, triples, etc. as needed and may be either
+time-independent or time-dependent.
+Several connectivity elements may be defined for any particles group.
+A connectivity element may only refer to a single particle group.
+
+The tuples of particles are interpreted according to the section
+[Storage of particles and tuples lists](#storage-of-particles-and-tuples-lists).
+
+Parameters group
+----------------
+
+The `parameters` group stores application-specific, custom data such as control
+parameters or simulation scripts. The group consists of groups, datasets, and
+attributes; the detailed structure, however, is left unspecified.
+
+The contents of the `parameters` group could be the following:
+
+    parameters
+     +-- <user_attribute1>
+     \-- <user_data1>
+     \-- <user_group1>
+     |    \-- <user_data2>
+     |    \-- ...
+     \-- ...
+
+References
+----------
