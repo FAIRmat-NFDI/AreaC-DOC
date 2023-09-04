@@ -28,7 +28,7 @@ nav:
         - Standardized observables: custom_schemas_for_new_features/h5md/references/standard_observables.md
   - Writing a parser plugin:
     - Overview: writing_a_parser_plugin/parser_plugin_overview.md
-    - Creating the shell for your parser: writing_a_parser_plugin/parser_shell.md
+    - Creating the framework for your parser: writing_a_parser_plugin/parser_shell.md
     - Parser structure for computation: writing_a_parser_plugin/computational.md
     - Creating parser tests: writing_a_parser_plugin/parser_tests.md
     - Creating new metainfo: writing_a_parser_plugin/creating_new_metainfo.md

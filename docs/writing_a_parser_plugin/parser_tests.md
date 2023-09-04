@@ -53,6 +53,12 @@ def test_parser(parser):
     sec_workflow = archive.workflow2
     assert sec_workflow.m_def.name == 'WorkflowName'
 ```
-
+<!-- TODO trim test examples?  -->
+<!-- TODO link to pytest tutorial?  -->
+<!-- TODO additions:
+Test specific cases using representative calculation. We use real-world data here. Note that this data will be public under the aforementioned license, so consult the relevant parties.
+Use assertions to test proper extraction. To facilitate lookup, refer to the data in its original units.
+Make the test objective clear by choosing appropriately sized functions and parametrization.
 The data for your tests should be stored in: `<path_to_test_mainfile> = <parserproject>/tests/data/<parsername>`.
 Ideally, there should be an `assert` statement for each MetaInfo quantity that is populated with your parser.
+-->

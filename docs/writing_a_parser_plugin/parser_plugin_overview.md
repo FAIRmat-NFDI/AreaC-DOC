@@ -8,12 +8,14 @@ with the required knowledge to contribute to and extend NOMAD.
 
 ## Getting started
 
+<!-- TODO link to reasons for using NOMAD  -->
 In principle, it is possible to [develop a "local parser"](references/quick_parser_setup.md) that uses the *nomad-lab* package to parse raw data,
 without changing the NOMAD software itself. This allows a quick start for focusing on the parsing
 of the data itself, but is not relevant for full integration of your new parser into NOMAD.
 Here we are focused on developing parsers that will be integrated into the NOMAD software.
 For this, you will have to [install a development version of NOMAD](references/quick_installing_nomad_dev.md).
-
+<!-- TODO we need to discuss as an Area if this distinction between changing the NOMAD metainfo or not is relevant  -->
+<!-- TODO change language to plugin-foced  -->
 
 ### Parser organization
 
@@ -24,9 +26,9 @@ The NOMAD parsers can be found within your local NOMAD git repo under
 * [atomistic](https://github.com/nomad-coe/atomistic-parsers) - Parsers for output from classical molecular simulations, e.g., from Gromacs, Lammps, etc.
 * [database](https://github.com/nomad-coe/database-parsers) - Parsers for various databases, e.g., OpenKim.
 * [eelsdb](https://github.com/nomad-coe/nomad-parser-eelsdb) - Parser for the EELS database (https://eelsdb.eu/; to be integrated in the database project).
-* [electronic](https://github.com/nomad-coe/electronic-parsers) - Parsers for output from electronic structure calculations, e.g., from Vasp, Fhiaims, etc.
+* [electronic](https://github.com/nomad-coe/electronic-parsers) - Parsers for output from electronic structure calculations, e.g., from Vasp, Fhiaims, etc. <!-- TODO ab Initio instead of electronic structure?  -->
 * [nexus](https://github.com/nomad-coe/nomad-parser-nexus) - Parsers for combining various instrument output formats and electronic lab notebooks.
-* [workflow](https://github.com/nomad-coe/workflow-parsers) - Parsers for output from codes that specialize in workflows, e.g., Aflow, FHI-vibes, QuantumEspressoPhonon, etc.
+* [workflow](https://github.com/nomad-coe/workflow-parsers) - Parsers for output from task managers and workflow schedulers.
 
 Within each project folder you will find a `test/` directory, containing the [parser tests](parser_tests.md), and also a directory containing the parsers' source code,
 `<parserproject>parser` or `<parserproject>parsers`, depending on if one or more
@@ -39,10 +41,12 @@ For example, the Quantum Espresso parser files are found in `dependencies/parser
 
 We will first focus on the case of adding a new parser to an existing parser project.
 [Creating a new parser project](references/advanced_new_parser_project.md) will require a few extra steps.
+<!-- TODO should these steps be list but suggested to skip? JFR - I think not, but we need to make the 2 cases clear...if they are relevant in everyone's view??  -->
 The existing parser projects are stored within their own git repositories and then linked
 to the NOMAD software. All current parser projects are available at [nomad-coe](https://github.com/nomad-coe)
 (see also individual links above).
 
+<!-- TODO create an account first? Link this to another section?  -->
 You will first need to create new branches within *both* the NOMAD project and *also* within the corresponding
 parser project. Ideally, this should be done following the [best practices for NOMAD development](references/quick_NOMAD_best_practices.md).
 Here, we briefly outline the procedure:
@@ -73,3 +77,4 @@ corresponding issue number and the title of the issue, and the default source br
 Under `What's next`, the default option should be `Checkout locally`, which is what we want in this case.
 Click `Create branch`, and then copy the provided commands to the clipboard, and run them within the parser
 project folder within your local NOMAD repo, i.e., `dependencies/parsers/<parserproject>`.
+<!-- TODO make this whole git section a reference?  -->

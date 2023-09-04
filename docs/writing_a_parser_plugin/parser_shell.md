@@ -1,4 +1,4 @@
-# Creating the shell for your parser
+# Creating the framework for your parser
 
 First, create a directory for your parser under the relevant parser project directory:
 
@@ -14,6 +14,7 @@ In the following please note the naming conventions:
 - <parser_name\> - snake case, e.g., quantum_espresso
 
 - <PARSERNAME\> - upper flat case, e.g., QUANTUMESPRESSO
+<!-- TODO state which convention is used where, i.e. filenames, classes, etc.  -->
 
 ### Parser files
 

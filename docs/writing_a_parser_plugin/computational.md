@@ -32,21 +32,29 @@ archive
      ├── outputs
      └── results
 ```
+<!-- workflow to workflow2?!  -->
 
 The most important section of the archive for computational data is the `run` section, which is
 divided into three main subsections: `method`, `system`, and `calculation`. `method` stores
-information about the computational model used to perform the calculation. `system` stores
+information about the computational model used to perform the calculation.
+<!-- TODO Comment from ND - I would highlight the semantics of each section, since this is the main information to be communicated quickly. e.g. -->
+`system` stores
 attributes of the atoms involved in the calculation, e.g., atom types, positions, lattice vectors, etc.
 `calculation` stores the output of the calculation, e.g., energy, forces, etc.
 
 The `workflow` section of the archive then stores information about the series of tasks performed
 to accumulate the (meta)data in the run section. The relevant input parameters for the workflow are
 stored in `method`, while the `results` section stores output from the workflow beyond observables
-of single configurations. For example, any ensemble-averaged quantity from a molecular dynamics
-simulation would be stored under `workflow/results`. Then, the `inputs`, `outputs`, and `tasks` sections
-are used to define the specifics of the workflow. For some [standard workflows](references/standard_workflows.md), e.g., geometry optimization and molecular
+of single configurations.
+<!-- TODO Comment from ND - Wouldn't it be easier to say that its subsection reference other sections in run? -->
+I think this better summarizes the general rule.
+For example, any ensemble-averaged quantity from a molecular dynamics
+simulation would be stored under `workflow/results`. Then, the `inputs`, `outputs`, and `tasks` sections define the specifics of the workflow.
+<!-- TODO add graph showing how inputs, outputs, and tasks are connected  -->
+For some [standard workflows](references/standard_workflows.md), e.g., geometry optimization and molecular
 dynamics, the NOMAD [normalizers]() <!-- TODO Link to normalizer docs  --> will automatically populate these specifics. The parser must only create the
 appropriate workflow section. <!-- TODO Should give an example somewhere -->
+<!-- TODO specify which workflow sections have to be set by the parser: workflow2 or these standard workflows. -->
 For non-standard workflows, the parser (or more appropriately the corresponding normalizer) must
 populate these sections accordingly.
 More information about the structure of the workflow section, as well as instructions on how to upload custom workflows to link individual Entries
@@ -59,33 +67,23 @@ typically implemented within `<parserproject>/parser.py`.
 
 ### Imports
 
-The imports typically include the necessary generic python modules, the required MetaInfo
-classes from nomad, and additional nomad utilities, e.g., from `nomad.atomutils`.
+The imports typically include not only the necessary generic python modules, but also the required MetaInfo
+classes from nomad and additional nomad utilities:
 
 ```python
 <license>
 import os
 import numpy as np
-import logging
 
+from nomad.datamodel.metainfo.simulation.system import System, Atoms
+
+from nomad.atomutils import get_molecules_from_bond_list
 from nomad.units import ureg
-from nomad.parsing.file_parser import FileParser
-from nomad.datamodel.metainfo.simulation.run import Run, Program
-from nomad.datamodel.metainfo.simulation.method import (
-    Method, ForceField, Model, Interaction, AtomParameters
-)
-from nomad.datamodel.metainfo.simulation.system import (
-    System, Atoms, AtomsGroup
-)
-from nomad.datamodel.metainfo.simulation.calculation import (
-    Calculation
-)
-from nomad.datamodel.metainfo.workflow import (
-    Workflow, MolecularDynamics
-)
-from nomad.datamodel.metainfo.simulation import workflow as workflow2
-from nomad.atomutils import get_molecules_from_bond_list, is_same_molecule, get_composition
 ```
+
+For example, above the classes `System` and `Atoms` are imported from the nomad MetaInfo definitions in order to appropriately build and populate the NOMAD archive.
+The `atomutils` NOMAD module contains many useful functions for processing computational data.
+Finally, the `UnitRegistry` module of `pint` (imported directly from NOMAD in this case), provides support to defining and converting units.
 
 
 ### Parser Classes
@@ -116,10 +114,16 @@ described further below. It may be useful to create a distinct class, `<Parserna
 for dealing with various filetypes that may be parsed throughout the entirety of the routine.
 However, in the simplest case of a single file type parsed, the entire parser can of course be
 implemented within a single class.
+<!-- TODO elaborate here on the distinction between mainfiles and other files  -->
 
 In the following, we will walk through the layout of the `<Parsername>Parser` class. First,
 every parser class should have a "main" function called `parse()`, which will be called by NOMAD
 when the appropriate mainfile is found:
+<!-- TODO
+Comment from ND - The API is a bit more elaborate, including init_parser() which sets mainfile, logger, and open.
+There are also functionalities to manipulate the stored data, but I would elaborate on those somewhere else.
+I'd also point the user to nomad/parsing/parsers.py/run_parser and nomad/parsing/file_parser/file_parsers.py for the full API.
+-->
 
 <!-- TODO Add comments to all this code  -->
 ```python
@@ -147,6 +151,7 @@ def parse(self, filepath, archive, logger):
 ```
 
 Then, the individual functions to populate that various MetaInfo sections can be defined:
+<!-- TODO update to API-driven design  -->
 
 ```python
 def parse_calculation(self):
