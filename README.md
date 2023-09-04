@@ -29,7 +29,7 @@ Make sure you have the latest pip version:
 pip install --upgrade pip
 ```
 
-Pip-install `mkdocs` and `mkdocs-material`:
+Pip-install the `requirements.txt` file:
 ```
 pip install -r requirements.txt
 ```
