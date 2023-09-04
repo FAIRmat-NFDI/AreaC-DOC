@@ -22,10 +22,13 @@ nav:
       - Connectivity: custom_schemas_for_new_features/h5md/connectivity.md
       - Parameters: custom_schemas_for_new_features/h5md/parameters.md
       - Units: custom_schemas_for_new_features/h5md/units.md
+      - Writing an H5MD-NOMAD file: custom_schemas_for_new_features/h5md/writing_h5md-nomad.md
       - References:
         - Quick Start - H5MD basics: custom_schemas_for_new_features/h5md/references/quick_H5MD_basics.md
         - Notable changes from H5MD to H5MD-NOMAD: custom_schemas_for_new_features/h5md/references/unsupported.md
         - Standardized observables: custom_schemas_for_new_features/h5md/references/standard_observables.md
+        - Testing your H5MD-NOMAD file: custom_schemas_for_new_features/h5md/references/testing_h5md-nomad.md
+        - Creating a topology: custom_schemas_for_new_features/h5md/references/creating_a_topology.md
   - Writing a parser plugin:
     - Overview: writing_a_parser_plugin/parser_plugin_overview.md
     - Creating the framework for your parser: writing_a_parser_plugin/parser_shell.md
