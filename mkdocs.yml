@@ -27,7 +27,20 @@ nav:
         - Notable changes from H5MD to H5MD-NOMAD: custom_schemas_for_new_features/h5md/references/unsupported.md
         - Standardized observables: custom_schemas_for_new_features/h5md/references/standard_observables.md
   - Writing a parser plugin:
-    - Introduction: writing_a_parser_plugin/intro.md
+    - Overview: writing_a_parser_plugin/parser_plugin_overview.md
+    - Creating the framework for your parser: writing_a_parser_plugin/parser_shell.md
+    - Parser structure for computation: writing_a_parser_plugin/computational.md
+    - Creating parser tests: writing_a_parser_plugin/parser_tests.md
+    - Creating new metainfo: writing_a_parser_plugin/creating_new_metainfo.md
+    - References:
+      - Quick Start - parser setup: writing_a_parser_plugin/references/quick_parser_setup.md
+      - Quick Start - installing a development version of NOMAD: writing_a_parser_plugin/references/quick_installing_nomad_dev.md
+      - Quick Start - best practices for NOMAD development: writing_a_parser_plugin/references/quick_NOMAD_best_practices.md
+      - Examples - NOMAD's parser-matching interface: writing_a_parser_plugin/references/examples_parser_matching.md
+      - Examples - populating the NOMAD archive: writing_a_parser_plugin/references/examples_populating_archive.md
+      - Standard workflows in NOMAD: writing_a_parser_plugin/references/standard_workflows.md
+      - Advanced - creating a new parser project: writing_a_parser_plugin/references/advanced_new_parser_project.md
+      - Old Docs: writing_a_parser_plugin/references/old_docs.md
   - Normalizing the parsed metadata:
     - Introduction: normalizing_the_parsed_metadata/intro.md
   - Querying and performing Data Science:
