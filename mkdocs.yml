@@ -9,8 +9,6 @@ nav:
     - Overview: uploading_and_publishing/overview.md
     - How-to upload data: uploading_and_publishing/howto_upload_data.md
     - Explanation - how the processing works?: uploading_and_publishing/explanation_how_the_processing_works.md
-    - How-to add metadata: uploading_and_publishing/howto_add_metadata.md
-    - How-to organize data in datasets: uploading_and_publishing/howto_organize_data_in_datasets.md
     - How-to publish data: uploading_and_publishing/howto_publish_data.md
     - References: uploading_and_publishing/refs.md
   - Custom schemas for new features:
@@ -112,7 +110,7 @@ extra_css:
 extra_javascript:
   - 'https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js'
   - 'https://unpkg.com/cytoscape@3.19.1/dist/cytoscape.min.js'
-  # - assets/js/parse.js
+  # - assets/code/parse.js
 extra:
   version: 0.1
   generator: false

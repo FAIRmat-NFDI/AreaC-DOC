@@ -25,6 +25,8 @@ On the top-left menus, click on `PUBLISH > Uploads`.
 
 You can then click on `CREATE A NEW UPLOAD` or try one of the example uploads by clicking in `ADD EXAMPLE UPLOADS` and selecting one of the multiple options. In our case, we will use a zip file with some computational data.
 
+You can drag-and-drop your files or click on the `CLICK OR DROP FILES` button to browse through your local directories.
+
 <div class="click-zoom">
     <label>
         <input type="checkbox">
@@ -33,7 +35,9 @@ You can then click on `CREATE A NEW UPLOAD` or try one of the example uploads by
 </div>
 
 
-After the files are uploaded, a [processing](refs.md/#processing) is triggered and NOMAD tries to recognize the data with its corresponding [parser](refs.md/#parser). Please, visit [Explanation - how the processing works](explanation_how_the_processing_works.md) to gain further insight in the process. You will receive an email when the upload processing is finished.
+After the files are uploaded, a [processing](refs.md/#processing) is triggered and NOMAD tries to recognize the data with its corresponding [parser](refs.md/#parser). Please, visit [Explanation - how the processing works](explanation_how_the_processing_works.md) to gain further insight in the process.
+
+You will receive an email when the upload processing is finished.
 
 
 ## Command-line uploads
@@ -59,11 +63,11 @@ The name of the upload can be modify by clicking on the pen icon (:fontawesome-s
 - :fontawesome-solid-user-group: _Manage members_: allows users to invite collaborators by defining co-authors and reviewers roles.
 - :fontawesome-solid-cloud-arrow-down: _Download files_: downloads all files present in the upload.
 - :fontawesome-solid-rotate-left: _Reload_: reloads the uploads page.
-- :fontawesome-solid-rotate: _Reprocess_: triggers the processing of the uploaded data.
+- :fontawesome-solid-rotate: _Reprocess_: triggers again the processing of the uploaded data.
 - :fontawesome-solid-angle-left::fontawesome-solid-angle-right: _API_: generates a JSON response to use by the [NOMAD API](refs.md/#api). See [Querying and performing Data Science](../querying_and_performing_Data_Science/intro.md) for more information.
 - :fontawesome-solid-trash: _Delete the upload_: deletes completely the upload.
 
-The files and folder structure is shown in the first section, _(1) Prepare and upload your files_.
+The files and folder structure is shown in the first section, _(1) Prepare and upload your files_. You can add a `README.md` in the root directory and its content will be shown in the Uploads page.
 
 <div class="click-zoom">
     <label>
@@ -74,7 +78,7 @@ The files and folder structure is shown in the first section, _(1) Prepare and u
 
 The second section _(2) Process data_ shows the processed data and the generated [entries](refs.md/#entries) in NOMAD.
 
-The third section _(3) Edit author metadata_ allows users to edit certain metadata fields from all entries recognized in the upload. This includes _comments_, where you can add as much extra information as you want, _references_, if the data is publicly available in some URL (e.g., an article DOI), and _datasets_, which allow to create or add the uploaded data into a more general dataset (please, see [How-to organize data in datasets](howto_organize_data_in_datasets.md)).
+The third section _(3) Edit author metadata_ allows users to edit certain metadata fields from all entries recognized in the upload. This includes _comments_, where you can add as much extra information as you want, _references_, if the data is publicly available in some URL (e.g., an article DOI), and _datasets_, which allow to create or add the uploaded data into a more general dataset (please, see [How-to organize data in datasets](howto_publish_data.md/#organize-data-in-datasets)).
 
 <div class="click-zoom">
     <label>
@@ -83,4 +87,4 @@ The third section _(3) Edit author metadata_ allows users to edit certain metada
     </label>
 </div>
 
-The final section _(4) Publish_ lets the user to publish the data with or without an embargo. This will be explained more in detail in [How-to publish data](howto_publish_data.md). After publishing by clicking on `PUBLISH`, the uploaded files are immutable. However, you can still edit the metadata fields in point (3).
+The final section _(4) Publish_ lets the user to publish the data with or without an embargo. This will be explained more in detail in [How-to publish data](howto_publish_data.md). 
