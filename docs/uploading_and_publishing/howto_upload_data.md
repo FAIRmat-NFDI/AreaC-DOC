@@ -1,14 +1,12 @@
 
-Uploading data in NOMAD is a very easy task which can be done in two ways: 
+Uploading data in NOMAD can be done in two ways: 
 
-- Upload data by dragging-and-dropping your files into the `PUBLISH > Uploads` page.
-- Using the shell command `curl` for sending files to the upload.
+- By dragging-and-dropping your files into the `PUBLISH > Uploads` page: suitable for users who have a relatively small amount of data or who want to test [how the processing works](explanation_how_the_processing_works.md).
+- By using the shell command `curl` for sending files to the upload: suitable for users who have larger datasets and need to automatize the upload.
 
-The first situation is suitable for users who have a relatively small amount of data or who want to test [how the processing works](explanation_how_the_processing_works.md). The second situation is suitable for users who have larger datasets and need to automatize the upload via the terminal using `curl`.
+You can upload the files one by one or you can zip them in [`.zip`](https://copyrightservice.co.uk/reg/creating-zip-files) or `.tar.gz` formats to upload a larger amount of files at once. 
 
-You can upload the files one by one, or you can also zip them in [`.zip`](https://copyrightservice.co.uk/reg/creating-zip-files) or `.tar.gz` formats to upload a larger amount of files at once. 
-
-We suggest you to visit the [References](refs.md) page and read our [Best Practices](refs.md/#best-practices-preparing-folder-upload) section to see what are the best practices to organize data in a directory tree prior to upload it.
+We suggest you to visit and read the [References > Best Practices: preparing the data and folder structure](refs.md/#best-practices-preparing-folder-upload) page to see what are the best practices to organize data in a directory tree prior to upload it.
 
 
 ## Drag-and-drop uploads
@@ -35,7 +33,7 @@ You can drag-and-drop your files or click on the `CLICK OR DROP FILES` button to
 </div>
 
 
-After the files are uploaded, a [processing](refs.md/#processing) is triggered and NOMAD tries to recognize the data with its corresponding [parser](refs.md/#parser). Please, visit [Explanation - how the processing works](explanation_how_the_processing_works.md) to gain further insight in the process.
+After the files are uploaded, a [processing](../glossary/glossary.md/#processing) is triggered. Please, visit [Explanation - how the processing works](explanation_how_the_processing_works.md) to gain further insight in the process.
 
 You will receive an email when the upload processing is finished.
 
@@ -46,7 +44,7 @@ You will receive an email when the upload processing is finished.
     Under construction.
 
 
-## Summary of the Uploads page
+## Sections of the Uploads page
 
 The uploads page allows you to modify certain general metadata fields.
 
@@ -64,7 +62,7 @@ The name of the upload can be modify by clicking on the pen icon (:fontawesome-s
 - :fontawesome-solid-cloud-arrow-down: _Download files_: downloads all files present in the upload.
 - :fontawesome-solid-rotate-left: _Reload_: reloads the uploads page.
 - :fontawesome-solid-rotate: _Reprocess_: triggers again the processing of the uploaded data.
-- :fontawesome-solid-angle-left::fontawesome-solid-angle-right: _API_: generates a JSON response to use by the [NOMAD API](refs.md/#api). See [Querying and performing Data Science](../querying_and_performing_Data_Science/intro.md) for more information.
+- :fontawesome-solid-angle-left::fontawesome-solid-angle-right: _API_: generates a JSON response to use by the [NOMAD API](../glossary/glossary.md/#api). See [Querying and performing Data Science](../querying_and_performing_Data_Science/intro.md) for more information.
 - :fontawesome-solid-trash: _Delete the upload_: deletes completely the upload.
 
 The files and folder structure is shown in the first section, _(1) Prepare and upload your files_. You can add a `README.md` in the root directory and its content will be shown in the Uploads page.
@@ -76,9 +74,9 @@ The files and folder structure is shown in the first section, _(1) Prepare and u
     </label>
 </div>
 
-The second section _(2) Process data_ shows the processed data and the generated [entries](refs.md/#entries) in NOMAD.
+The second section _(2) Process data_ shows the processed data and the generated [entries](../glossary/glossary.md/#entries) in NOMAD.
 
-The third section _(3) Edit author metadata_ allows users to edit certain metadata fields from all entries recognized in the upload. This includes _comments_, where you can add as much extra information as you want, _references_, if the data is publicly available in some URL (e.g., an article DOI), and _datasets_, which allow to create or add the uploaded data into a more general dataset (please, see [How-to organize data in datasets](howto_publish_data.md/#organize-data-in-datasets)).
+The third section _(3) Edit author metadata_ allows users to edit certain metadata fields from all entries recognized in the upload. This includes _comments_, where you can add as much extra information as you want, _references_, if the data is publicly available in some URL (e.g., an article DOI), and _datasets_, which allow to create or add the uploaded data into a more general dataset (see [How-to publish data > Organizing data in datasets](howto_publish_data.md/#organize-data-in-datasets)).
 
 <div class="click-zoom">
     <label>

@@ -15,24 +15,4 @@ NOMAD limits the number of uploads and size of all its users. The following rule
 
 ## VASP POTCAR stripping {#vasp-potcar-stripping}
 
-For VASP data, NOMAD takes care of the licensing of `POTCAR` files. In agreement with Georg Kresse, NOMAD extracts the most important information of the `POTCAR` file and stores them in a stripped version called `POTCAR.stripped`. The `POTCAR` files are then automatically removed from the upload and you can safely publish your data. 
-
-
-## Glossary
-
-!!! warning
-    Under construction.
-
-### NOMAD Graphical User Interface (GUI) {#gui}
-
-### Processing {#processing}
-
-### Parser {#parser}
-
-### NOMAD Application Programming Interface (API) {#api}
-
-### Entries {#entries}
-
-### Metadata sections {#metadata-sections}
-
-### Metadata quantities {#metadata-quantities}
+For VASP data, NOMAD complies with the licensing of the `POTCAR` files. In agreement with [Georg Kresse](https://www.vasp.at/info/team/), NOMAD extracts the most important information of the `POTCAR` file and stores them in a stripped version called `POTCAR.stripped`. The `POTCAR` files are then automatically removed from the upload, so that you can safely publish your data. 
