@@ -1,4 +1,4 @@
-# Root level
+# The root level
 
 The root level of H5MD-NOMAD structure is organized as follows (identical to the original H5MD specification):
 

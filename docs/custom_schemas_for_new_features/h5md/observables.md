@@ -37,6 +37,8 @@ The observable type is provided as an attribute to the particular observable sub
 
 The following observable types are supported:
 
+<a id="configurational_observable_anchor"></a>
+
 `configurational`
 :   An observable that is computed for each individual configuration, with the following general structure:
 
@@ -48,6 +50,8 @@ The following observable types are supported:
      |    \-- value: <type>[N_frames][M]
      \-- ...
  where `M` is the dimension of the observable. This section may also be used to store per-particle quantities/attributes that are not currently supported as [standardized H5MD-NOMAD elements for particles group](particles.md#standardized-h5md-nomad-elements-for-particles-group), in which case `value` will have dimensions `[N_frames][N_part][M]`.
+
+<a id="ensemble_average_observable_anchor"></a>
 
 `ensemble_average`
 :   An observable that is computed by averaging over multiple configurations, with the following generic structure:
@@ -115,6 +119,8 @@ The following observable types are supported:
 * `<custom_dataset>`
 :   additional metadata may be given as necessary.
 <!-- TODO - Is this really parsed?! -->
+
+<a id="time_correlation_observable_anchor"></a>
 
 `time_correlation`
 :   An obervable that is computed by calculating correlations between configurations in time, with the following general structure:

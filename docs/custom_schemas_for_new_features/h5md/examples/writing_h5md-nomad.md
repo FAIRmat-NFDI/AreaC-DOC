@@ -1,10 +1,12 @@
-# Writing an H5MD-NOMAD file
+# Example - H5MD-NOMAD file
 
 You can write to an HDF5 file via a python interface, using the [h5py](https://docs.h5py.org/en/stable/quick.html) package. This page provides some practical examples to help you get started.
 
 ## Imports
 ```python
 import numpy as np
+import json
+
 import h5py
 import parmed as chem
 import MDAnalysis as mda
@@ -46,7 +48,7 @@ In this example, we will assume that the relevant simulation data is compatible 
 
 Create a universe by supplying a `pdb` structure file and corresponding `dcd` trajectory file ([MDAnalysis supports many different file formats](https://userguide.mdanalysis.org/stable/formats/index.html)):
 ```python
-universe = mda.Universe('initial_structure.pdb', 'trajectory.dcd') # use the input coordinate file for positions
+universe = mda.Universe('initial_structure.pdb', 'trajectory.dcd')
 
 n_frames = len(universe.trajectory)
 n_atoms = universe.trajectory[0].n_atoms
@@ -60,9 +62,9 @@ struct = chem.openmm.load_topology(pdb.topology, system)
 universe_toponly = mda.Universe(struct)
 ```
 
-## H5MD Group
+## [H5MD Group](h5md.md)
 
-Create an hdf5 file called `test_h5md-nomad.h5` and create the group `h5md` under `root`:
+Create an HDF5 file called `test_h5md-nomad.h5` and create the group `h5md` under `root`:
 ```python
 h5_write = h5py.File('test_h5md-nomad.h5', 'w')
 h5md = h5_write.create_group('h5md')
@@ -70,7 +72,7 @@ h5md = h5_write.create_group('h5md')
 
 Add the h5md version (1.0.x in this case) as an attribute of the `h5md` group:
 ```python
-h5md.attrs['version'] = [1,0]
+h5md.attrs['version'] = [1, 0]
 ```
 
 Create the `author` group and add the associated metadata:
@@ -94,9 +96,9 @@ program.attrs['name'] = h5py.__name__
 program.attrs['version'] = str(h5py.__version__)
 ```
 
-## Particles Group
+## [Particles Group](particles.md)
 
-Create the `particles` group and the underlying `all` group to hold the relevant particles data:
+Create the `particles` group and the underlying `all` group to hold the relevant particle data:
 ```python
 particles = h5_write.create_group('particles')
 particles_group_all = particles.create_group('all')
@@ -157,7 +159,7 @@ edges['value'].attrs['unit_factor'] = length_unit.magnitude
 
 ```
 
-## Connectivity Group
+## [Connectivity Group](../connectivity.md)
 
 Create the `connectivity` group under `root` and add the tuples of bonds, angles, and dihedrals:
 ```python
@@ -167,13 +169,14 @@ connectivity['angles'] = universe_toponly.angles._bix  # shape = (n_angles, 3)
 connectivity['dihedrals'] = universe_toponly.dihedrals._bix  # shape = (n_dihedrals, 4)
 connectivity['impropers'] = universe_toponly.impropers._bix  # shape = (n_impropers, 4)
 ```
+Here `n_bonds`, `n_angles`, `n_dihedrals`, and `n_impropers` represent the corresponding number of instances of each interaction within the force field.
 
-The creation of the `particles_group` group is discussed [HERE](references/creating_a_topology.md)
+The creation of the `particles_group` group (i.e., topology) is discussed [HERE](creating_a_topology.md)
 
 
-## Observables Group
+## [Observables Group](../observables.md)
 
-For this section, we will consider sets of fabricated observable data. First, create the `obervables` group under root:
+For this section, we will consider sets of fabricated observable data for clarity. First, create the `obervables` group under root:
 ```python
 observables = h5_write.create_group('observables')
 ```
@@ -183,7 +186,7 @@ There are 3 types of support observables:
 types = ['configurational', 'ensemble_average', 'correlation_function']
 ```
 
-### Configurational Observables
+### [Configurational Observables](../observables.md#configurational_observable_anchor)
 
 Fabricated data:
 ```python
@@ -230,83 +233,59 @@ kinetic_energy['value'] = kinetic_energies
 kinetic_energy['value'].attrs['unit'] = str(energy_unit.units)
 kinetic_energy['value'].attrs['unit_factor'] = energy_unit.magnitude
 ```
-### Ensemble Average Observables
+### [Ensemble Average Observables](../observables.md#ensemble_average_observable_anchor)
 
-Fabricated data:
+Fabricated data - the following represents radial distribution function (rdf) data calculated between molecule types `X` and `Y`, stored in `rdf_MOLX-MOLY.xvg`:
+```
+      0.24 0.000152428
+     0.245 0.00457094
+      0.25  0.0573499
+     0.255   0.284764
+      0.26   0.842825
+     0.265    1.64705
+      0.27    2.37243
+     0.275    2.77916
+      0.28    2.80622
+     0.285    2.60082
+      0.29    2.27182
+      ...
+```
+
+Store the rdf data in a dictionary along with some relevant metadata:
+
 ```python
-rdf = np.loadtxt('rdf_SOL-SOL.xvg', comments=['@', '#'])
+rdf_XX = np.loadtxt('rdf_MOLX-MOLX.xvg')
+rdf_XY = np.loadtxt('rdf_MOLX-MOLY.xvg')
+rdf_YY = np.loadtxt('rdf_MOLY-MOLY.xvg')
 rdfs = {
-    'MOL1-MOL1': {
-        'n_bins': len(rdf[:, 0]),
-        'bins': rdf[:, 0],
-        'value': rdf[:, 1],
+    'MOLX-MOLX': {
+        'n_bins': len(rdf_XX[:, 0]),
+        'bins': rdf_XX[:, 0],
+        'value': rdf_XX[:, 1],
         'type': 'molecular',
         'frame_start': 0,
         'frame_end': n_frames-1
     },
-    'MOL1-MOL2': {
-        'n_bins': len(rdf[:, 0]),
-        'bins': rdf[:, 0],
-        'value': rdf[:, 1],
+    'MOLX-MOLY': {
+        'n_bins': len(rdf_XY[:, 0]),
+        'bins': rdf_XY[:, 0],
+        'value': rdf_XY[:, 1],
         'type': 'molecular',
         'frame_start': 0,
         'frame_end': n_frames-1
     },
-    'MOL2-MOL2': {
-        'n_bins': len(rdf[:, 0]),
-        'bins': rdf[:, 0],
-        'value': rdf[:, 1],
+    'MOLY-MOLY': {
+        'n_bins': len(rdf_YY[:, 0]),
+        'bins': rdf_YY[:, 0],
+        'value': rdf_YY[:, 1],
         'type': 'molecular',
         'frame_start': 0,
         'frame_end': n_frames-1
-    }
-}
-
-Ds = {
-    'MOL1': {
-        'value': 1.0,
-        'error_type': 'Pearson_correlation_coefficient',
-        'errors': 0.98
-    },
-    'MOL2': {
-        'value': 2.0,
-        'error_type': 'Pearson_correlation_coefficient',
-        'errors': 0.95
     }
 }
 ```
 
-### Time Correlation Observables
-
-Fabricated data:
-```python
-msd = np.loadtxt('msd_SOL.xvg', comments=['@', '#'])
-msds = {
-    'MOL1': {
-        'n_times': len(msd[:, 0]),
-        'times': msd[:, 0],
-        'value': msd[:, 1],
-        'type': 'molecular',
-        'direction': 'xyz',
-        'error_type': 'standard_deviation',
-        'errors': np.zeros(len(msd[:, 0])),
-    },
-    'MOL2': {
-        'n_times': len(msd[:, 0]),
-        'times': msd[:, 0],
-        'value': msd[:, 1],
-        'type': 'molecular',
-        'direction': 'xyz',
-        'error_type': 'standard_deviation',
-        'errors': np.zeros(len(msd[:, 0])),
-    }
-}
-```
-
-
-
-
-
+Now create the `radial_distribution_functions` group under `observables` and store each imported rdf:
 ```python
 radial_distribution_functions = observables.create_group('radial_distribution_functions')
 for key in rdfs.keys():
@@ -320,7 +299,85 @@ for key in rdfs.keys():
     rdf['value'] = rdfs[key]['value']
     rdf['frame_start'] = rdfs[key]['frame_start']
     rdf['frame_end'] = rdfs[key]['frame_end']
+```
 
+We can also store scalar ensemble average observables. Let's consider some fabricated diffusion constant data:
+```python
+Ds = {
+    'MOLX': {
+        'value': 1.0,
+        'error_type': 'Pearson_correlation_coefficient',
+        'errors': 0.98
+    },
+    'MOLY': {
+        'value': 2.0,
+        'error_type': 'Pearson_correlation_coefficient',
+        'errors': 0.95
+    }
+}
+```
+
+Create the `diffusion constants` group under `observables` and store the correspond (meta)data:
+
+```python
+diffusion_constants = observables.create_group('diffusion_constants')
+for key in Ds.keys():
+    diffusion_constant = diffusion_constants.create_group(key)
+    diffusion_constant.attrs['type'] = types[1]
+    diffusion_constant['value'] = Ds[key]['value']
+    diffusion_constant['value'].attrs['unit'] = str(diff_unit.units)
+    diffusion_constant['value'].attrs['unit_factor'] = diff_unit.magnitude
+    diffusion_constant['error_type'] = Ds[key]['error_type']
+    diffusion_constant['errors'] = Ds[key]['errors']
+```
+
+### [Time Correlation Observables](../observables.md#time_correlation_observable_anchor)
+
+Fabricated data - the following represents mean squared displacement (msd) data calculated for molecule type `X`, stored in `msd_MOLX.xvg`:
+```
+         0           0
+         2   0.0688769
+         4    0.135904
+         6    0.203573
+         8    0.271162
+        10    0.339284
+        12    0.410115
+        14    0.477376
+        16    0.545184
+        18     0.61283
+        ...
+```
+
+Store the msd data in a dictionary along with some relevant metadata:
+
+```python
+msd_X = np.loadtxt('msd_MOLX.xvg')
+msd_Y = np.loadtxt('msd_MOLY.xvg')
+msds = {
+    'MOLX': {
+        'n_times': len(msd_X[:, 0]),
+        'times': msd_X[:, 0],
+        'value': msd_X[:, 1],
+        'type': 'molecular',
+        'direction': 'xyz',
+        'error_type': 'standard_deviation',
+        'errors': np.zeros(len(msd_X[:, 0])),
+    },
+    'MOLY': {
+        'n_times': len(msd_Y[:, 0]),
+        'times': msd_Y[:, 0],
+        'value': msd_Y[:, 1],
+        'type': 'molecular',
+        'direction': 'xyz',
+        'error_type': 'standard_deviation',
+        'errors': np.zeros(len(msd_Y[:, 0])),
+    }
+}
+```
+
+Now create the `mean_squared_displacements` group under `observables` and store each imported rdf:
+
+```python
 mean_squared_displacements = observables.create_group('mean_squared_displacements')
 msd_unit = length_unit * length_unit
 diff_unit = msd_unit / time_unit
@@ -338,19 +395,30 @@ for key in msds.keys():
     msd['value'].attrs['unit'] = str(msd_unit.units)
     msd['value'].attrs['unit_factor'] = msd_unit.magnitude
     msd['errors'] = msds[key]['errors']
-
-diffusion_constants = observables.create_group('diffusion_constants')
-for key in Ds.keys():
-    diffusion_constant = diffusion_constants.create_group(key)
-    diffusion_constant.attrs['type'] = types[1]
-    diffusion_constant['value'] = Ds[key]['value']
-    diffusion_constant['value'].attrs['unit'] = str(diff_unit.units)
-    diffusion_constant['value'].attrs['unit_factor'] = diff_unit.magnitude
-    diffusion_constant['error_type'] = Ds[key]['error_type']
-    diffusion_constant['errors'] = Ds[key]['errors']
 ```
 
-## Parameter Group
+## [Parameter Group](../parameters.md)
+
+Using the json templates for [force calculations](../parameters.md#force_calculation_template_anchor) and [molecular dynamics workflows](../parameters.md#md_workflow_template_anchor), the (meta)data can be written to the H5MD-NOMAD file using the following code:
+
+First, import the templates:
+```python
+with open('force_calculations_metainfo.json') as json_file:
+    force_calculation_parameters = json.load(json_file)
+
+with open('workflow_metainfo.json') as json_file:
+    workflow_parameters = json.load(json_file)
+```
+
+Then, create the appropriate container groups:
+```python
+parameters = h5_write.create_group('parameters')
+force_calculations = parameters.create_group('force_calculations')
+workflow = parameters.create_group('workflow')
+```
+
+
+Now, recursively write the (meta)data:
 ```python
 def get_parameters_recursive(parameter_group, parameter_dict):
     # Store the parameters from parameter dict into an hdf5 file
@@ -371,10 +439,9 @@ def get_parameters_recursive(parameter_group, parameter_dict):
 
     return parameter_group
 
-parameters = h5_write.create_group('parameters')
-force_calculations = parameters.create_group('force_calculations')
+
 force_calculations = get_parameters_recursive(force_calculations, force_calculation_parameters)
-workflow = parameters.create_group('workflow')
 workflow = get_parameters_recursive(workflow, workflow_parameters)
 ```
 
+It's as simple as that! Now, we can [upload our H5MD-NOMAD file directly to NOMAD](../../../uploading_and_publishing_data/intro.md) and all the written (meta)data will be stored according to the standard NOMAD schema.

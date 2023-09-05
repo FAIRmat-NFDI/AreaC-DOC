@@ -1,4 +1,4 @@
-# H5MD metadata
+# The H5MD Group
 
 A set of global metadata describing the H5MD structure is stored in the `h5md`
 group as attributes. The contents of the group is:
