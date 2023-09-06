@@ -27,11 +27,7 @@ jobs:
           node-version: '14'
       - name: Install Node.js dependencies
         run: npm install js-yaml
-      - name: Installing mkdocs-material
-        run: pip install mkdocs-material 
-      - name: Installing mkdocs-bibtex
-        run: pip install mkdocs-bibtex
-      - name: Installing python-markdown-math from repository
-        run: pip install https://github.com/mitya57/python-markdown-math/archive/master.zip
+      - name: Installing requirements
+        run: pip install -r requirements.txt 
       - name: Deploying GH page for mkdocs
         run: mkdocs gh-deploy --force
