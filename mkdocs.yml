@@ -8,8 +8,8 @@ nav:
   - Uploading and Publishing:
     - Overview: uploading_and_publishing/overview.md
     - How-to upload data: uploading_and_publishing/howto_upload_data.md
-    - Explanation - how the processing works?: uploading_and_publishing/explanation_how_the_processing_works.md
     - How-to publish data: uploading_and_publishing/howto_publish_data.md
+    - Explanation - how the processing works?: uploading_and_publishing/explanation_how_the_processing_works.md
     - References: uploading_and_publishing/refs.md
   - Custom schemas for new features:
     - Introduction: custom_schemas_for_new_features/intro.md

@@ -22,7 +22,7 @@ On the top-left menu, click on `PUBLISH > Uploads`.
 </div>
 
 
-You can then click on `CREATE A NEW UPLOAD` or try one of the example uploads by clicking in `ADD EXAMPLE UPLOADS` and selecting one of the multiple options. In our case, we will use a zip file with some computational data.
+You can then click on `CREATE A NEW UPLOAD` or try one of the example uploads by clicking in `ADD EXAMPLE UPLOADS` and selecting one of the multiple options. In our case, we use a zip file with some computational data.
 
 You can drag-and-drop your files or click on the `CLICK OR DROP FILES` button to browse through your local directories.
 
@@ -34,7 +34,7 @@ You can drag-and-drop your files or click on the `CLICK OR DROP FILES` button to
 </div>
 
 
-After the files are uploaded, a [processing](../glossary/glossary.md/#processing) is triggered. Visit [Explanation - how the processing works](explanation_how_the_processing_works.md) to gain further insight into the process.
+After the files are uploaded, a **processing** is triggered. Visit [Explanation - how the processing works](explanation_how_the_processing_works.md) to gain further insight into the process.
 
 You will receive an email when the upload processing is finished.
 
@@ -64,7 +64,7 @@ At the top of the uploads page, you can modify certain general metadata fields.
     </label>
 </div>
 
-The name of the upload can be modify by clicking on the pen icon (:fontawesome-solid-pen:). The other icons correspond to:
+The name of the upload can be modify by clicking on the pen icon :fontawesome-solid-pen:. The other icons correspond to:
 
 <!--Confirm with Lauri the icons-->
 - :fontawesome-solid-user-group: _Manage members_: allows users to invite collaborators by defining co-authors and reviewers roles.
@@ -92,14 +92,11 @@ The second section, _(2) Process data_, shows the processed data and the generat
     </label>
 </div>
 
-The third section, _(3) Edit author metadata_, allows users to edit certain metadata fields from all entries recognized in the upload. This includes _comments_, where you can add as much extra information as you want, _references_, where you can add an URL to your upload (e.g., an article DOI), and _datasets_, where you can create or add the uploaded data into a more general dataset (see [How-to publish data > Organizing data in datasets](howto_publish_data.md/#organize-data-in-datasets)).
+The third section, _(3) Edit author metadata_, allows users to edit certain metadata fields from all entries recognized in the upload. This includes _comments_, where you can add as much extra information as you want, _references_, where you can add a URL to your upload (e.g., an article DOI), and _datasets_, where you can create or add the uploaded data into a more general dataset (see [How-to publish data > Organizing data in datasets](howto_publish_data.md/#organize-data-in-datasets)).
 
-<div class="click-zoom">
-    <label>
-        <input type="checkbox">
-        <img src="/assets/uploading_and_publishing/edit_author_metadata.png" alt="Edit author metadata." width="50%" title="Edit author metadata.">
-    </label>
-</div>
+<p align="center">
+    <img src="/assets/uploading_and_publishing/edit_author_metadata.png" alt="Edit author metadata." width="50%" title="Edit author metadata.">
+</p>
 
 The final section, _(4) Publish_, lets the user to publish the data with or without an embargo. This will be explained more in detail in [How-to publish data](howto_publish_data.md). 
 

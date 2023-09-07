@@ -30,4 +30,4 @@ Now, the defined dataset will be defined under `PUBLISH > Datasets`.
     </label>
 </div>
 
-The icon :fontawesome-solid-bookmark: allows you to assign a DOI to a specific dataset. Once a DOI has been assign to a dataset, no more data can be added to it. This can then be added into your publication so that it can be used as a reference, e.g., see the Data availability statement in [M. Kuban et al., _Similarity of materials and data-quality assessment by fingerprinting_, MRS Bulletin **47**, 991-999 (2022)](https://link.springer.com/article/10.1557/s43577-022-00339-w).
+The icon :fontawesome-solid-bookmark: allows you to assign a DOI to a specific dataset. Once a DOI has been assign to a dataset, no more data can be added to it. This can then be added into your publication so that it can be used as a reference, e.g., see the [**Data availability statement** in M. Kuban et al., _Similarity of materials and data-quality assessment by fingerprinting_, MRS Bulletin **47**, 991-999 (2022)](https://link.springer.com/article/10.1557/s43577-022-00339-w#data-availability).
