@@ -1,10 +1,10 @@
 
-One of the main pillars of NOMAD is to enable scientists and researchers to **manage, share, and publish data** in an easy and efficient way. In this section, we will show you how you can use the central NOMAD Archive (or, equivalently, your local installations or OASIS) for this purpose. Alternatively, you can visit the general NOMAD documentation page, and check the [Tutorial](https://nomad-lab.eu/prod/v1/staging/docs/tutorial.html) and the [How-to upload/publish data](https://nomad-lab.eu/prod/v1/staging/docs/data/upload.html).
+One of the main pillars of NOMAD is to enable scientists and researchers to **manage, share, and publish data** in an easy and efficient way. In this section, we will show you how you can use the central NOMAD Archive (or, equivalently, your local installations or OASIS) for this purpose. Alternatively, you can check the [Tutorial](https://nomad-lab.eu/prod/v1/staging/docs/tutorial.html) and [How-to upload/publish data](https://nomad-lab.eu/prod/v1/staging/docs/data/upload.html) in the general NOMAD documentation.
 
 
 ## Creating a NOMAD account
 
-The initial step before being able to upload and publish data in NOMAD is to create your personal account.
+Before being able to upload and publish data in NOMAD, you need to create your personal account.
 
 Go to the [NOMAD website](https://nomad-lab.eu/nomad-lab/) and click on the button `Open NOMAD`. This will take you to the [NOMAD GUI](../glossary/glossary.md/#gui). The purpose of this site is to allow users to search, access, and download data using an intuitive and appealing interface.
 

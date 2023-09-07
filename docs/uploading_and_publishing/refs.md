@@ -9,7 +9,7 @@
 NOMAD limits the number of uploads and size of all its users. The following rules apply:
 
 1. One upload cannot exceed **32 GB** in size.
-2. An user can only be co-author of **10 non-published uploads** at the same time.
+2. A user can only be co-author of up to **10 non-published uploads** at the same time.
 3. Only uploads with at least **one recognized entry** can be published.
 
 
