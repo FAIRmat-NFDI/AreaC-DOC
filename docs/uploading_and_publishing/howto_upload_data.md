@@ -2,7 +2,7 @@
 Uploading data in NOMAD can be done in two ways: 
 
 - By dragging-and-dropping your files into the `PUBLISH > Uploads` page: suitable for users who have a relatively small amount of data or who want to test [how the processing works](explanation_how_the_processing_works.md).
-- By using the Python-based [NOMAD API]((../glossary/glossary.md/#api)): suitable for users who have larger datasets and need to automatize the upload.
+- By using the Python-based [NOMAD API](../glossary/glossary.md/#api): suitable for users who have larger datasets and need to automatize the upload.
 - By using the shell command `curl` for sending files to the upload: suitable for users who have larger datasets and need to automatize the upload.
 
 You can upload the files one by one or you can zip them in [`.zip`](https://copyrightservice.co.uk/reg/creating-zip-files) or `.tar.gz` formats to upload a larger amount of files at once. 
