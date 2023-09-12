@@ -1,4 +1,4 @@
-# Root level
+# The root level
 
 The root level of H5MD-NOMAD structure is organized as follows (identical to the original H5MD specification):
 
@@ -26,7 +26,7 @@ The root level of H5MD-NOMAD structure is organized as follows (identical to the
 :   An optional group that contains information about the connectivity between particles.
 
 `parameters`
-:   An optional group that contains application-specific, custom data such as
+:   An optional group that contains application-specific (meta)data such as
     control parameters or simulation scripts.
 
 

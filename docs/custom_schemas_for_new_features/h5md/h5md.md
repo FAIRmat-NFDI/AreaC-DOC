@@ -1,4 +1,4 @@
-# H5MD metadata
+# The H5MD Group
 
 A set of global metadata describing the H5MD structure is stored in the `h5md`
 group as attributes. The contents of the group is:
@@ -21,7 +21,7 @@ group as attributes. The contents of the group is:
     of the H5MD specification the H5MD structure conforms to.
 
 The version *x.y.z* of the H5MD specification follows
-[semantic versioning][semver] [@semantic_versioning]: A change of the major
+[semantic versioning](https://semver.org/spec/v2.0.0.html): A change of the major
 version number *x* indicates backwards-incompatible changes to the file
 structure. A change of the minor version number *y* indicates
 backwards-compatible changes to the file structure. A change of the patch

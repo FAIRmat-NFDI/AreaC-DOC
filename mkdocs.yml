@@ -22,6 +22,10 @@ nav:
       - Connectivity: custom_schemas_for_new_features/h5md/connectivity.md
       - Parameters: custom_schemas_for_new_features/h5md/parameters.md
       - Units: custom_schemas_for_new_features/h5md/units.md
+      - Examples:
+        - Writing an H5MD-NOMAD file: custom_schemas_for_new_features/h5md/examples/writing_h5md-nomad.md
+        - Creating a topology: custom_schemas_for_new_features/h5md/examples/creating_a_topology.md
+        - Accessing an H5MD-NOMAD file: custom_schemas_for_new_features/h5md/examples/testing_h5md-nomad.md
       - References:
         - Quick Start - H5MD basics: custom_schemas_for_new_features/h5md/references/quick_H5MD_basics.md
         - Notable changes from H5MD to H5MD-NOMAD: custom_schemas_for_new_features/h5md/references/unsupported.md

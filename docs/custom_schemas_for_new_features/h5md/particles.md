@@ -51,12 +51,16 @@ absolute position in space of an *arbitrary* periodic image of that particle. --
     type.
 
 `image`
-:   <a id="image_anchor"></a>**(currently unused in H5MD-NOMAD)** An element that represents periodic images of the box as coordinate vectors
-of `Float` or `Integer` type and allows one to compute for each particle its
-absolute position in space. If `image` is present, `position` must be
-present as well. For time-dependent data, the `step` and `time` datasets of
-`image` must equal those of `position`, which must be accomplished by
-hard-linking the respective datasets.
+:   <a id="image_anchor"></a>**(currently unused in H5MD-NOMAD)**
+
+??? details
+
+    An element that represents periodic images of the box as coordinate vectors
+    of `Float` or `Integer` type and allows one to compute for each particle its
+    absolute position in space. If `image` is present, `position` must be
+    present as well. For time-dependent data, the `step` and `time` datasets of
+    `image` must equal those of `position`, which must be accomplished by
+    hard-linking the respective datasets.
 
 <!-- If the component $k$ of `box/boundary` (see [below](#simulation-box)) is set
 to `none`, the values of the corresponding component $k$ of `image` serve as
@@ -67,18 +71,25 @@ from `position`, $\vec a_i$ is taken from `image`, and $\vec L$ from
 `box/edges`. -->
 
 `species`
-:   **(currently unused in H5MD-NOMAD)** An element that describes the species for each particle, i.e., its
-atomic or chemical identity, as a scalar of `Enumeration` or `Integer`
-data type. Particles of the same species are assumed to be identical with
-respect to their properties and unbonded interactions.
+:   **(currently unused in H5MD-NOMAD)**
+
+??? details
+
+    An element that describes the species for each particle, i.e., its
+    atomic or chemical identity, as a scalar of `Enumeration` or `Integer`
+    data type. Particles of the same species are assumed to be identical with
+    respect to their properties and unbonded interactions.
 
 `id`
-:   **(currently unused in H5MD-NOMAD)** An element that holds a scalar identifier for each particle of `Integer`
-type, which is unique within the given particle subgroup. The `id` serves
-to identify particles over the course of the simulation in the case when
-the order of the particles changes, or when new particles are inserted and
-removed. If `id` is absent, the identity of the particles is given by their
-index in the `value` datasets of the elements within the same subgroup.
+: **(currently unused in H5MD-NOMAD)**
+??? details
+
+    An element that holds a scalar identifier for each particle of `Integer`
+    type, which is unique within the given particle subgroup. The `id` serves
+    to identify particles over the course of the simulation in the case when
+    the order of the particles changes, or when new particles are inserted and
+    removed. If `id` is absent, the identity of the particles is given by their
+    index in the `value` datasets of the elements within the same subgroup.
 
 <!-- A *fill value* (see
 [§ 6.6](http://www.hdfgroup.org/HDF5/doc/UG/11_Datatypes.html#Fvalues) in

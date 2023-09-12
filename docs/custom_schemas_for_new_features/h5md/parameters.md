@@ -32,6 +32,8 @@ The subgroups `force_calculations` and `workflow` are supported. The following p
 
 The `force_calculations` group contains the parameters for force calculations according to the a force field during a molecular dynamics run.
 
+<a id="force_calculation_template_anchor"></a>
+
 The following json template illustrates the structure of the `force_calculations` group, with example values for clarity:
 
 ```json
@@ -135,6 +137,8 @@ Section containing the parameters for neighbor searching/lists during a molecula
 ## The molecular dynamics workflow
 
 The `workflow` group contains the parameters for any type of workflow. Here we describe the specific case of the well-defined `molecular_dynamics` workflow. Custom workflows are described in detail [HERE](../intro.md).
+
+<a id="md_workflow_template_anchor"></a>
 
 The following json template illustrates the structure of the `molecular_dynamics` subsection of the `workflow` group, with example values for clarity:
 
