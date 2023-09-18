@@ -1,7 +1,7 @@
 # Specifying units of datasets in H5MD-NOMAD
 
 In the original H5MD schema, units were given as string attributes of datasets, e.g., ``60 m s-2``.
-H5MD-NOMAD ammends the treatment of units in 2 ways:
+H5MD-NOMAD amends the treatment of units in 2 ways:
 
 1. If needed, the leading prefactor is stored as a separate attribute of `float` datatype called `unit_factor`.
 

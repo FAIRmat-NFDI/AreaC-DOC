@@ -21,12 +21,12 @@ The initial H5MD proposed a simple and flexible schema for the general storage o
 
 <a id="obs_para2"></a>
 
-As depicted above, observables representing only a subset of the particles may be stored in appropriate subgroups similarly to the `particles` tree. H5MD-NOMAD **does** support the organization of observables into subgroups (as discussed in more detail below). However, **grouping by particle groups is not fully supported** in the sense that there is currently no metadata storing the corresponding indices of the relevant particles subgroup. Additionally, since [only the `all` particles group is parsed](particles.md#the-particles-group), information about the named subgroup will not be stored anywhere in the archive. *Thus, we recommend for now that only observables relevant to the `all` particles subgroup are stored within this section.*
+As depicted above, observables representing only a subset of the particles may be stored in appropriate subgroups similar to the `particles` tree. H5MD-NOMAD **does** support the organization of observables into subgroups (as discussed in more detail below). However, **grouping by particle groups is not fully supported** in the sense that there is currently no metadata storing the corresponding indices of the relevant particles subgroup. Additionally, since [only the `all` particles group is parsed](particles.md#the-particles-group), information about the named subgroup will not be stored anywhere in the archive. *Thus, we recommend for now that only observables relevant to the `all` particles subgroup are stored within this section.*
 <!-- TODO - not sure about this, it might be fine if you can add additional metadata that is stored -->
 
 ## H5MD-NOMAD observables
 
-H5MD-NOMAD extends H5MD observable storage by 1. specifying standard observable types with associated metadata and 2. providing standarized specifications for some common observables.
+H5MD-NOMAD extends H5MD observable storage by 1. specifying standard observable types with associated metadata and 2. providing standardized specifications for some common observables.
 The observable type is provided as an attribute to the particular observable subgroup:
 
     observables
@@ -80,13 +80,13 @@ The following observable types are supported:
 :   describes the particles involved in determining the property. For example, for a radial distribution function between particles of type `A` and `B`, `label` might be set to `A-B`
 
 * `n_variables`
-:   dimensionality of the observable. Can also be infered from leading dimension of `bins`.
+:   dimensionality of the observable. Can also be inferred from leading dimension of `bins`.
 
 * `variables_name`
 :   name/description of the independent variables along which the observable is defined.
 
 * `n_bins`
-:   number of bins along each dimension of the observable. Either single Integer for 1-D observables, or a list of Integers for multi-dimensional observable. Can also be infered from dimensions of `bins`.
+:   number of bins along each dimension of the observable. Either single Integer for 1-D observables, or a list of Integers for multi-dimensional observable. Can also be inferred from dimensions of `bins`.
 
 * `bins`
 :   value of the bins used for calculating the observable along each dimension of the observable.
@@ -123,7 +123,7 @@ The following observable types are supported:
 <a id="time_correlation_observable_anchor"></a>
 
 `time_correlation`
-:   An obervable that is computed by calculating correlations between configurations in time, with the following general structure:
+:   An observable that is computed by calculating correlations between configurations in time, with the following general structure:
 
     observables
      \-- <time_correlation_subgroup>
@@ -147,7 +147,7 @@ The following observable types are supported:
 :   allowed values of `x`, `y`, `z`, `xy`, `yz`, `xz`, `xyz`. The direction/s used for calculating the correlation function.
 
 * `n_times`
-:   number of times windows for the calculation of the correlation function. Can also be infered from dimensions of `times`.
+:   number of times windows for the calculation of the correlation function. Can also be inferred from dimensions of `times`.
 
 * `times`
 :   time values used for calculating the correlation function (i.e., &Delta;t values).

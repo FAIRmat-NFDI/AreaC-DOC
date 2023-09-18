@@ -6,7 +6,7 @@ represent different subsets of the system under consideration.
 For simplicity of parsing, H5MD-NOMAD currently requires one such group, labeled `all`, to contain all the particles and corresponding attributes to be stored in the NOMAD archive.
 **Additional particle groups will be ignored**.
 
-For each dataset, the ordering of indices (whenever relevant) are as follows: frame index, particle index, dimension index.
+For each dataset, the ordering of indices (whenever relevant) is as follows: frame index, particle index, dimension index.
 Thus, the contents of the `particles` group for a trajectory with `N_frames` frames and `N_part` particles in a `D`-dimensional space can be represented:
 
     particles
@@ -129,7 +129,7 @@ attribute `type` may be omitted. -->
 
 ## Non-standard elements in particles group
 
-**All non-standard elements within the particles group are currently igorned by the NOMAD H5MD parser.** In principle, one can store additional custom attributes as configuration-specific observables (see [The observables group](observables.md)).
+**All non-standard elements within the particles group are currently ignored by the NOMAD H5MD parser.** In principle, one can store additional custom attributes as configuration-specific observables (see [The observables group](observables.md)).
 
 
 ## The simulation box subgroup

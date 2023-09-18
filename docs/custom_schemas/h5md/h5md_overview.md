@@ -3,9 +3,9 @@
 Most computational data in NOMAD is harvested with code-specific parsers that recognize the output files from a particular software and retrieve the appropriate (meta)data accordingly.
 However, this approach is not possible for many modern molecular simulation engines that use fully-flexible scriptable input and non-fixed output files.
 ["HDF5 for molecular data" (H5MD)](http://h5md.nongnu.org/) is a data schema for storage of molecular simulation data, based on the HDF5 file format.
-The following pages describe an extension of the H5MD schema, denoted H5MD-NOMAD, which adds specificity to several of the H5MD guidelines while also retaining reasonable flexbility. This enables simulation data stored according to the H5MD-NOMAD schema to be parsed and nomarlized by NOMAD, while also allowing the user some freedom for customization.
+The following pages describe an extension of the H5MD schema, denoted H5MD-NOMAD, which adds specificity to several of the H5MD guidelines while also retaining reasonable flexibility. This enables simulation data stored according to the H5MD-NOMAD schema to be parsed and normalized by NOMAD, while also allowing the user some freedom for customization.
 
-**Due the new nature of extending upon the original H5MD schema, portions of these doc pages were duplicated, extended, or summarized from the [H5MD webpage](http://h5md.nongnu.org/).**
+**Due to the new nature of extending upon the original H5MD schema, portions of these doc pages were duplicated, extended, or summarized from the [H5MD webpage](http://h5md.nongnu.org/).**
 
 ## Introduction to the H5MD storage format
 

@@ -44,7 +44,7 @@ The general structure of the `connectivity` group is as follows:
 
 ## The particles_group subgroup
 
-Despite not fully utilizing the organization of arbitrary groups of particles within the `particles` group, H5MD-NOMAD allows for the user to provide an arbitrary hierarchy of particle groupings, also refered to as a "topology", within the `connectivity` subgroup called `particles_group`. This information will be used by NOMAD to facilitate visualizations of the system, through the "topology bar" in the overview page. The general structure of the topology group is as follows:
+Despite not fully utilizing the organization of arbitrary groups of particles within the `particles` group, H5MD-NOMAD allows for the user to provide an arbitrary hierarchy of particle groupings, also referred to as a "topology", within the `connectivity` subgroup called `particles_group`. This information will be used by NOMAD to facilitate visualizations of the system, through the "topology bar" in the overview page. The general structure of the topology group is as follows:
 
     connectivity
      \-- particles_group
@@ -62,7 +62,7 @@ Despite not fully utilizing the organization of arbitrary groups of particles wi
 The initial `particles_group` subgroup, directly under `connectivity`, is a container for the entire topology. `particles_group` contains a series of subgroups with arbitrary names, which denote the first level of organization within the topology. The name of each subgroup will become the group label within the NOMAD metadata. Each of these subgroups then contain a series of datasets:
 
 * `type`
-: describes the type of particle group. There exist a list of standardized types: `molecule_group`, `molecule`, `monomer_group`, `monomer`. However, arbitrary types can be given. We suggest that you 1. use the standardized types when appropriate (note that protein residues should be generically typed as `monomer`) and 2. use the general format `<type>_group` for groups of a distinct type (see further description of suggested hierarchy below).
+: describes the type of particle group. There exists a list of standardized types: `molecule_group`, `molecule`, `monomer_group`, `monomer`. However, arbitrary types can be given. We suggest that you 1. use the standardized types when appropriate (note that protein residues should be generically typed as `monomer`) and 2. use the general format `<type>_group` for groups of a distinct type (see further description of suggested hierarchy below).
 
 * `formula`
 : a "chemical-like" formula that describes the particle group with respect to its underlying components. The format for the formula is `<child_1>(n_child_1)<child_2>(n_child_2)...`, where `<child_x>` is the name/label of the underlying component, and `n_child_x` is the number of such components found within this particle group. Example: A particles group containing 100 water molecules named `water` has the formula `water(100)`, whereas each underlying water molecule has the standard chemical formula `H2O`.
@@ -77,6 +77,6 @@ The initial `particles_group` subgroup, directly under `connectivity`, is a cont
 : arbitrary additional metadata for this particle group may be given.
 
 
-Each subgroup may also contain a (nested) `particles_group` subgroup, in order to subdivide the group of particles into a organizational hierarchy. As with the overall `particles_group` container, the groups contained within `particles_group` must not *partition* the particles within this group (i.e., overlapping or non-complete grouping are allowed). However, particle groups *must* contain particles already contained within the parent `particles_group` (i.e., subgroups must be a subset of the grouping at the previous level of the hierarchy).
+Each subgroup may also contain a (nested) `particles_group` subgroup, in order to subdivide the group of particles into an organizational hierarchy. As with the overall `particles_group` container, the groups contained within `particles_group` must not *partition* the particles within this group (i.e., overlapping or non-complete groupings are allowed). However, particle groups *must* contain particles already contained within the parent `particles_group` (i.e., subgroups must be a subset of the grouping at the previous level of the hierarchy).
 
 Note that typically the `particles_group` hierarchy ends at the level of individual particles (i.e., individual particles are not stored, since this information is already contained within the `particles` group).
