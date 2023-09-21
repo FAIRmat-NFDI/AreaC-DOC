@@ -11,25 +11,27 @@ nav:
     - How-to publish data: uploading_and_publishing/howto_publish_data.md
     - Explanation - how the processing works?: uploading_and_publishing/explanation_how_the_processing_works.md
     - References: uploading_and_publishing/refs.md
-  - Custom schemas for new features:
-    - Introduction: custom_schemas_for_new_features/intro.md
+  - Filtering and Querying:
+    - Overview: filtering_and_querying/overview.md
+  - Custom schemas:
+    - Overview: custom_schemas/overview.md
     - H5MD:
-      - Overview: custom_schemas_for_new_features/h5md/h5md_overview.md
-      - Root: custom_schemas_for_new_features/h5md/root.md
-      - H5MD: custom_schemas_for_new_features/h5md/h5md.md
-      - Particles: custom_schemas_for_new_features/h5md/particles.md
-      - Observables: custom_schemas_for_new_features/h5md/observables.md
-      - Connectivity: custom_schemas_for_new_features/h5md/connectivity.md
-      - Parameters: custom_schemas_for_new_features/h5md/parameters.md
-      - Units: custom_schemas_for_new_features/h5md/units.md
+      - Overview: custom_schemas/h5md/h5md_overview.md
+      - Root: custom_schemas/h5md/root.md
+      - H5MD: custom_schemas/h5md/h5md.md
+      - Particles: custom_schemas/h5md/particles.md
+      - Observables: custom_schemas/h5md/observables.md
+      - Connectivity: custom_schemas/h5md/connectivity.md
+      - Parameters: custom_schemas/h5md/parameters.md
+      - Units: custom_schemas/h5md/units.md
       - Examples:
-        - Writing an H5MD-NOMAD file: custom_schemas_for_new_features/h5md/examples/writing_h5md-nomad.md
-        - Creating a topology: custom_schemas_for_new_features/h5md/examples/creating_a_topology.md
-        - Accessing an H5MD-NOMAD file: custom_schemas_for_new_features/h5md/examples/testing_h5md-nomad.md
+        - Writing an H5MD-NOMAD file: custom_schemas/h5md/examples/writing_h5md-nomad.md
+        - Creating a topology: custom_schemas/h5md/examples/creating_a_topology.md
+        - Accessing an H5MD-NOMAD file: custom_schemas/h5md/examples/testing_h5md-nomad.md
       - References:
-        - Quick Start - H5MD basics: custom_schemas_for_new_features/h5md/references/quick_H5MD_basics.md
-        - Notable changes from H5MD to H5MD-NOMAD: custom_schemas_for_new_features/h5md/references/unsupported.md
-        - Standardized observables: custom_schemas_for_new_features/h5md/references/standard_observables.md
+        - Quick Start - H5MD basics: custom_schemas/h5md/references/quick_H5MD_basics.md
+        - Notable changes from H5MD to H5MD-NOMAD: custom_schemas/h5md/references/unsupported.md
+        - Standardized observables: custom_schemas/h5md/references/standard_observables.md
   - Writing a parser plugin:
     - Overview: writing_a_parser_plugin/parser_plugin_overview.md
     - Creating the framework for your parser: writing_a_parser_plugin/parser_shell.md
@@ -45,20 +47,27 @@ nav:
       - Standard workflows in NOMAD: writing_a_parser_plugin/references/standard_workflows.md
       - Advanced - creating a new parser project: writing_a_parser_plugin/references/advanced_new_parser_project.md
       - Old Docs: writing_a_parser_plugin/references/old_docs.md
-  - Normalizing the parsed metadata:
-    - Introduction: normalizing_the_parsed_metadata/intro.md
-  - Querying and performing Data Science:
-    - Introduction: querying_and_performing_Data_Science/intro.md
-  - Visualizing properties in the entry page:
-    - Introduction: visualizing_properties_in_the_entry_page/intro.md
-  - Defining filters for searches:
-    - Introduction: defining_filters_for_searches/intro.md
-  - Current features:
-    - Introduction: current_features/intro.md
+  - Normalizing metadata:
+    - Overview: normalizing_metadata/overview.md
+  - Customizing the filters:
+    - Overview: customizing_the_filters/overview.md
+  - Visualizing properties:
+    - Overview: visualizing_properties/overview.md
+  - Current and planned features:
+    - Overview: current_and_planned_features/overview.md
   - Glossary of terms: glossary/glossary.md
   - Contact: contact.md
 theme:
   name: material
+  font:
+    text: 'Titillium Web'
+  logo: assets/nomad-logo.png
+  favicon: assets/favicon.png
+  features:
+    - navigation.instant
+    - navigation.footer
+  icon:
+    repo: fontawesome/brands/github
   palette:
     - media: "(prefers-color-scheme: light)"
       # primary: '#2A4CDF'
@@ -72,15 +81,6 @@ theme:
       toggle:
         icon: material/weather-night
         name: Switch to light mode
-  font:
-    text: 'Titillium Web'
-  logo: assets/nomad-logo.png
-  favicon: assets/favicon.png
-  features:
-    - navigation.instant
-    - navigation.footer
-  icon:
-    repo: fontawesome/brands/github
 plugins:
   - search
   - bibtex:

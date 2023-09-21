@@ -4,7 +4,7 @@ In the previous section, [How-to upload data](howto_upload_data.md), we showed t
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/uploading_and_publishing/gwupload.gif" alt="GW upload gif" width="90%" title="Creating a new upload with DFT+GW data.">
+        <img src="/assets/uploading_and_publishing/gwupload.gif" alt="GW upload gif" width="90%" title="Click to zoom in">
     </label>
 </div>
 
@@ -33,7 +33,7 @@ For this new entry, NOMAD generates a **NOMAD archive** section. It will contain
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/uploading_and_publishing/nomad_metainfo.png" alt="The NOMAD metainfo." width="90%" title="The NOMAD metainfo.">
+        <img src="/assets/uploading_and_publishing/nomad_metainfo.png" alt="The NOMAD metainfo." width="90%" title="Click to zoom in">
     </label>
 </div>
 
@@ -67,12 +67,12 @@ Parsers are added to NOMAD as _plugins_ and are divided in a set of Github sub-p
 
 ### Normalizing {#normalizing}
 
-After the parsing populates the `run` and `workflow2` sections, an extra layer of Python modules is executed on top of the processed NOMAD metadata. This has two main purposes: 1. normalize or _homogenize_ certain metadata parsed from different codes, and 2. populate the `results` section. For example, this is the case of normalizing the density of states (DOS) to its size intensive value, independently of the code used to calculate the DOS. The set of normalizers relevant for computational data are listed in [`/nomad/config/models.py`](https://github.com/nomad-coe/nomad/blob/develop/nomad/config/models.py#L383) and are executed in the specific order defined there. Their roles are explained more in detail in [Normalizing the parsed metadata](../normalizing_the_parsed_metadata/intro.md).
+After the parsing populates the `run` and `workflow2` sections, an extra layer of Python modules is executed on top of the processed NOMAD metadata. This has two main purposes: 1. normalize or _homogenize_ certain metadata parsed from different codes, and 2. populate the `results` section. For example, this is the case of normalizing the density of states (DOS) to its size intensive value, independently of the code used to calculate the DOS. The set of normalizers relevant for computational data are listed in [`/nomad/config/models.py`](https://github.com/nomad-coe/nomad/blob/develop/nomad/config/models.py#L383) and are executed in the specific order defined there. Their roles are explained more in detail in [Normalizing metadata](../normalizing_metadata/overview.md).
 
 
 ### Search indexing (and storing) {#search-indexing}
 
-The last step is to store the structured metadata and pass some of it to the search index. The metadata which is passed to the search index is defined in the `results` section. These metadata can then be searched by [filtering in the Entries page of NOMAD](../defining_filters_for_searches/intro.md) or by writing a Python script which [searches using the NOMAD API](../querying_and_performing_Data_Science/intro.md).
+The last step is to store the structured metadata and pass some of it to the search index. The metadata which is passed to the search index is defined in the `results` section. These metadata can then be searched by filtering in the Entries page of NOMAD or by writing a Python script which searches using the NOMAD API, see [Filtering and Querying](../filtering_and_querying/overview.md).
 
 
 ## Entries OVERVIEW page
@@ -84,7 +84,7 @@ You will land on the `OVERVIEW` page of the entry. On the top menu you can furth
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/uploading_and_publishing/overview_page.png" alt="Overview page." width="90%" title="Overview page.">
+        <img src="/assets/uploading_and_publishing/overview_page.png" alt="Overview page." width="90%" title="Click to zoom in">
     </label>
 </div>
 
@@ -97,7 +97,7 @@ In the `LOGS` page, you can find information about the processing. You can read 
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/uploading_and_publishing/logs_page.png" alt="Logs page." width="90%" title="Logs page.">
+        <img src="/assets/uploading_and_publishing/logs_page.png" alt="Logs page." width="90%" title="Click to zoom in">
     </label>
 </div>
 
@@ -115,8 +115,8 @@ The `DATA` page contains all the structured NOMAD metainfo populated by the pars
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/uploading_and_publishing/data_page.png" alt="Data page." width="90%" title="Data page.">
+        <img src="/assets/uploading_and_publishing/data_page.png" alt="Data page." width="90%" title="Click to zoom in">
     </label>
 </div>
 
-Furthermore, you can click on the :fontawesome-solid-cloud-arrow-down: icon to download the NOMAD `archive` in a JSON format. We explain more in detail how to work with such files in [Querying and performing Data Science](../querying_and_performing_Data_Science/intro.md).
+Furthermore, you can click on the :fontawesome-solid-cloud-arrow-down: icon to download the NOMAD `archive` in a JSON format. We explain more in detail how to work with such files in [Filtering and Querying](../filtering_and_querying/overview.md).
