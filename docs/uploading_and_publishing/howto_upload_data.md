@@ -1,5 +1,5 @@
 
-Uploading data in NOMAD can be done in two ways: 
+Uploading data in NOMAD can be done in several ways: 
 
 - By dragging-and-dropping your files into the `PUBLISH > Uploads` page: suitable for users who have a relatively small amount of data or who want to test [how the processing works](explanation_how_the_processing_works.md).
 - By using the Python-based [NOMAD API](../glossary/glossary.md/#api): suitable for users who have larger datasets and need to automatize the upload.
@@ -72,7 +72,11 @@ The name of the upload can be modify by clicking on the pen icon :fontawesome-so
 - :fontawesome-solid-angle-left::fontawesome-solid-angle-right: _API_: generates a JSON response to use by the [NOMAD API](../glossary/glossary.md/#api). See [Filtering and Querying](../filtering_and_querying/overview.md) for more information.
 - :fontawesome-solid-trash: _Delete the upload_: deletes completely the upload.
 
-The remainder of the uploads page is divided in 4 sections. The first section, _(1) Prepare and upload your files_, shows the files and folder structure in the upload. You can add a `README.md` in the root directory and its content will be shown above this section..
+The remainder of the uploads page is divided in 4 sections. 
+
+### Prepare and upload your files
+
+This section shows the files and folder structure in the upload. You can add a `README.md` in the root directory and its content will be shown above this section..
 
 <div class="click-zoom">
     <label>
@@ -81,7 +85,10 @@ The remainder of the uploads page is divided in 4 sections. The first section, _
     </label>
 </div>
 
-The second section, _(2) Process data_, shows the processed data and the generated [entries](../glossary/glossary.md/#entries) in NOMAD.
+
+### Process data
+
+This section shows the processed data and the generated [entries](../glossary/glossary.md/#entries) in NOMAD.
 
 <div class="click-zoom">
     <label>
@@ -90,13 +97,18 @@ The second section, _(2) Process data_, shows the processed data and the generat
     </label>
 </div>
 
-The third section, _(3) Edit author metadata_, allows users to edit certain metadata fields from all entries recognized in the upload. This includes _comments_, where you can add as much extra information as you want, _references_, where you can add a URL to your upload (e.g., an article DOI), and _datasets_, where you can create or add the uploaded data into a more general dataset (see [How-to publish data > Organizing data in datasets](howto_publish_data.md/#organize-data-in-datasets)).
+
+### Edit author metadata
+
+This section allows users to edit certain metadata fields from all entries recognized in the upload. This includes _comments_, where you can add as much extra information as you want, _references_, where you can add a URL to your upload (e.g., an article DOI), and _datasets_, where you can create or add the uploaded data into a more general dataset (see [How-to publish data > Organizing data in datasets](howto_publish_data.md/#organize-data-in-datasets)).
 
 <p align="center">
     <img src="/assets/uploading_and_publishing/edit_author_metadata.png" alt="Edit author metadata." width="50%">
 </p>
 
-The final section, _(4) Publish_, lets the user to publish the data with or without an embargo. This will be explained more in detail in [How-to publish data](howto_publish_data.md). 
+### Publish
+
+This section lets the user to publish the data with or without an embargo. This will be explained more in detail in [How-to publish data](howto_publish_data.md). 
 
 <div class="click-zoom">
     <label>
