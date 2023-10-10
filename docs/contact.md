@@ -9,7 +9,7 @@ You can reach us by different channels. You can send as directly an email to the
     |------|------------|--------|
     | Dr. Nathan Daelman                    | [nathan.daelman@physik.hu-berlin.de](mailto:nathan.daelman@physik.hu-berlin.de)       | DFT, parsers, normalizers  |
     | Dr. Alvin Noe Ladines                 | [alvin.noe.ladines@physik.hu-berlin.de](mailto:alvin.noe.ladines@physik.hu-berlin.de) | Parsers, workflows           |
-    | Dr. José M. Pizarro                   | [jose.pizarro@physik.hu-berlin](mailto:jose.pizarro@physik.hu-berlin)                 | GW, DMFT, BSE, parsers, workflows, normalizers        |
+    | Dr. José M. Pizarro                   | [jose.pizarro@physik.hu-berlin.de](mailto:jose.pizarro@physik.hu-berlin.de)                 | GW, DMFT, BSE, parsers, workflows, normalizers        |
     | Dr. Joseph F. Rudzinski (**Coordinator**) | [joseph.rudzinski@physik.hu-berlin.de](mailto:joseph.rudzinski@physik.hu-berlin.de)   | MD, parsers, workflows, normalizers                          |
 
 
