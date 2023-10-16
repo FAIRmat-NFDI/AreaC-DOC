@@ -26,15 +26,27 @@ As depicted above, observables representing only a subset of the particles may b
 
 ## H5MD-NOMAD observables
 
-H5MD-NOMAD extends H5MD observable storage by 1. specifying standard observable types with associated metadata and 2. providing standardized specifications for some common observables.
-The observable type is provided as an attribute to the particular observable subgroup:
+H5MD-NOMAD extends H5MD observable storage by 1. specifying standard observable types with associated metadata and 2. providing standardized specifications for some common observables. In contrast to the schema above, a more restrictive structure is required:
 
     observables
-     \-- <observable_subgroup>
-     |    +-- type: String[]
+     \-- <observable_type_1>
+     |    \-- <observable_1_label_1>
+     |    |    +-- type: String[]
+     |    |    \-- ...
+     \-- <observable_type_2>
+     |    \-- <observable_2_label_1>
+     |    |    +-- type: String[]
+     |    |    \-- ...
+     |    \-- <observable_2_label_2>
+     |    |    +-- type: String[]
+     |    |    \-- ...
      |    \-- ...
      \-- ...
 
+Here, each `observable_type` corresponds to a particular group of observables, e.g., to be plotted together in a single plot. The given name for this group could be generic, e.g., `radial distribution function`, or more specific, e.g., `molecular radial distribution function for solvents`. The latter may be useful in case multiple groupings of a single type of observable are needed.
+Each `observable_label` then corresponds to a specific name for an individual instance of this observable type. For example, for a radial distribution function between particles of type `A` and `B`, `observable_label` might be set to `A-B`.
+
+Finally, H5MD-NOMAD has added the observable `type` as an attribute of each observable:
 The following observable types are supported:
 
 <a id="configurational_observable_anchor"></a>
@@ -44,10 +56,12 @@ The following observable types are supported:
 
     observables
      \-- <configurational_subgroup>
-     |    +-- type: "configurational"
-     |    \-- step: Integer[N_frames]
-     |    \-- time: Float[N_frames]
-     |    \-- value: <type>[N_frames][M]
+     |    \-- <label_1>
+     |    |    +-- type: "configurational"
+     |    |    \-- step: Integer[N_frames]
+     |    |    \-- time: Float[N_frames]
+     |    |    \-- value: <type>[N_frames][M]
+     |    \-- ...
      \-- ...
  where `M` is the dimension of the observable. This section may also be used to store per-particle quantities/attributes that are not currently supported as [standardized H5MD-NOMAD elements for particles group](particles.md#standardized-h5md-nomad-elements-for-particles-group), in which case `value` will have dimensions `[N_frames][N_part][M]`.
 
@@ -58,26 +72,24 @@ The following observable types are supported:
 
     observables
      \-- <ensemble_average_subgroup>
-     |    +-- type: "ensemble_average"
-     |    \-- (label): String[]
-     |    \-- (n_variables): Integer
-     |    \-- (variables_name): String[n_variables][]
-     |    \-- (n_bins): Integer[]
-     |    \-- bins: Float[n_bins][]
-     |    \-- value: <type>[n_bins][]
-     |    \-- (frame_start): Integer
-     |    \-- (frame_end): Integer
-     |    \-- (n_smooth): Integer
-     |    \-- (type): String[]
-     |    \-- (error_type): String[]
-     |    \-- (errors): Float[n_bins]
-     |    \-- (error_labels): String[]
-     |    \-- (frame_end): Integer
-     |    \-- (<custom_dataset>): <type>[]
+     |    \-- <label_1>
+     |    |    +-- type: "ensemble_average"
+     |    |    \-- (n_variables): Integer
+     |    |    \-- (variables_name): String[n_variables][]
+     |    |    \-- (n_bins): Integer[]
+     |    |    \-- bins: Float[n_bins][]
+     |    |    \-- value: <type>[n_bins][]
+     |    |    \-- (frame_start): Integer
+     |    |    \-- (frame_end): Integer
+     |    |    \-- (n_smooth): Integer
+     |    |    \-- (type): String[]
+     |    |    \-- (error_type): String[]
+     |    |    \-- (errors): Float[n_bins]
+     |    |    \-- (error_labels): String[]
+     |    |    \-- (frame_end): Integer
+     |    |    \-- (<custom_dataset>): <type>[]
+     |    \-- ...
      \-- ...
-
-* `label`
-:   describes the particles involved in determining the property. For example, for a radial distribution function between particles of type `A` and `B`, `label` might be set to `A-B`
 
 * `n_variables`
 :   dimensionality of the observable. Can also be inferred from leading dimension of `bins`.
@@ -127,17 +139,18 @@ The following observable types are supported:
 
     observables
      \-- <time_correlation_subgroup>
-     |    +-- type: "time_correlation"
-     |    \-- (label): String[]
-     |    \-- (direction): String[]
-     |    \-- (n_times): Integer[]
-     |    \-- times: Float[n_times][]
-     |    \-- value: <type>[n_bins][]
-     |    \-- (type): String[]
-     |    \-- (error_type): String[]
-     |    \-- (errors): Float[n_bins]
-     |    \-- (error_labels): String[]
-     |    \-- (<custom_dataset>): <type>[]
+     |    \-- <label_1>
+     |    |    +-- type: "time_correlation"
+     |    |    \-- (direction): String[]
+     |    |    \-- (n_times): Integer[]
+     |    |    \-- times: Float[n_times][]
+     |    |    \-- value: <type>[n_bins][]
+     |    |    \-- (type): String[]
+     |    |    \-- (error_type): String[]
+     |    |    \-- (errors): Float[n_bins]
+     |    |    \-- (error_labels): String[]
+     |    |    \-- (<custom_dataset>): <type>[]
+     |    \-- ...
      \-- ...
 
 * `label`
