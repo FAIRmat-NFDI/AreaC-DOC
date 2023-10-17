@@ -4,7 +4,7 @@ In the previous section, [How-to upload data](howto_upload_data.md), we showed t
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/uploading_and_publishing/gwupload.gif" alt="GW upload gif" width="90%" title="Click to zoom in">
+        <img src="../assets/uploading_and_publishing/gwupload.gif" alt="GW upload gif" width="90%" title="Click to zoom in">
     </label>
 </div>
 
@@ -34,7 +34,7 @@ For this new entry, NOMAD generates a **NOMAD archive**. It will contain all the
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/uploading_and_publishing/nomad_metainfo.png" alt="The NOMAD metainfo." width="90%" title="Click to zoom in">
+        <img src="../assets/uploading_and_publishing/nomad_metainfo.png" alt="The NOMAD metainfo." width="90%" title="Click to zoom in">
     </label>
 </div>
 
@@ -85,7 +85,7 @@ You will land on the `OVERVIEW` page of the entry. On the top menu you can furth
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/uploading_and_publishing/overview_page.png" alt="Overview page." width="90%" title="Click to zoom in">
+        <img src="../assets/uploading_and_publishing/overview_page.png" alt="Overview page." width="90%" title="Click to zoom in">
     </label>
 </div>
 
@@ -98,7 +98,7 @@ In the `LOGS` page, you can find information about the processing. You can read 
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/uploading_and_publishing/logs_page.png" alt="Logs page." width="90%" title="Click to zoom in">
+        <img src="../assets/uploading_and_publishing/logs_page.png" alt="Logs page." width="90%" title="Click to zoom in">
     </label>
 </div>
 
@@ -116,7 +116,7 @@ The `DATA` page contains all the structured NOMAD metainfo populated by the pars
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="/assets/uploading_and_publishing/data_page.png" alt="Data page." width="90%" title="Click to zoom in">
+        <img src="../assets/uploading_and_publishing/data_page.png" alt="Data page." width="90%" title="Click to zoom in">
     </label>
 </div>
 
