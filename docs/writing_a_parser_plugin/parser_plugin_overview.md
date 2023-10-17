@@ -17,7 +17,7 @@ For this, you will have to [install a development version of NOMAD](references/q
 <!-- TODO we need to discuss as an Area if this distinction between changing the NOMAD metainfo or not is relevant  -->
 <!-- TODO change language to plugin-foced  -->
 
-### Parser organization
+### Parser organization {#parser-organization}
 
 The NOMAD parsers can be found within your local NOMAD git repo under
 `dependencies/parsers/`. The parsers are organized into the following individual projects
