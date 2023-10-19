@@ -13,7 +13,7 @@ On the top right, click on `LOGIN / REGISTER`.
 You can then create an account by clicking on `New user? Register`.
 
 <p align="center">
-    <img src="../assets/uploading_and_publishing/newuser_register.png" width="50%" alt="New user? Register.">
+    <img src="/assets/uploading_and_publishing/newuser_register.png" width="50%" alt="New user? Register.">
 </p>
 
 After filling the blanks and clicking on `REGISTER`, you will receive a verification email. Once you verify your personal account, you can start using NOMAD.
