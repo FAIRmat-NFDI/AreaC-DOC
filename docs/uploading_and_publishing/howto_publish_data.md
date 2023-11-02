@@ -5,7 +5,7 @@ After uploading and a successful parsing, **congratulations!** Now you can publi
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="../assets/uploading_and_publishing/publish.png" alt="Publish button." width="90%" title="Click to zoom in">
+        <img src="publish.png" alt="Publish button." width="90%" title="Click to zoom in">
     </label>
 </div>
 
@@ -26,7 +26,7 @@ Now, the defined dataset will be defined under `PUBLISH > Datasets`.
 <div class="click-zoom">
     <label>
         <input type="checkbox">
-        <img src="../assets/uploading_and_publishing/datasets_page.png" alt="Datasets page." width="90%" title="Click to zoom in">
+        <img src="datasets_page.png" alt="Datasets page." width="90%" title="Click to zoom in">
     </label>
 </div>
 
