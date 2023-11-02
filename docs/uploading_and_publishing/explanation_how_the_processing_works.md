@@ -100,9 +100,6 @@ In the `LOGS` page, you can find information about the processing. You can read 
         <input type="checkbox">
         <img src="logs_page.png" alt="Logs page." width="90%" title="Click to zoom in">
     </label>
-</div>
-
-!!! tip "Bug reporting"
     We recommend you to contact us in case you find `FAILURE` situations. These might be due to bugs which we are rapidly fixing, and whose origin might be varied: from a new version
     of a code which is not yet supported to wrong handling of potential errors in the parser script. It may also be a problem with the organization of the data in the folders. In order to
     minimize these situations, we suggest you reading [References > Best Practices: preparing the data and folder structure](refs.md/#best-practices-preparing-folder-upload). 
