@@ -83,8 +83,8 @@ theme:
         name: Switch to light mode
 plugins:
   - search
-  - bibtex:
-      bib_file: docs/assets/refs.bib
+  # - bibtex:
+      # bib_file: docs/assets/refs.bib
 markdown_extensions:
   - attr_list
   - md_in_html
