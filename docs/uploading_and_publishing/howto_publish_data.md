@@ -9,7 +9,7 @@ After uploading and a successful parsing, **congratulations!** Now you can publi
     </label>
 </div>
 
-You can define a speficic `Embargo period` of up to 36 months, after which the data will be made publicly available under the [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) license.
+You can define a specific `Embargo period` of up to 36 months, after which the data will be made publicly available under the [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) license.
 
 After publishing by clicking on `PUBLISH`, the uploaded files cannot be altered. However, you can still edit the metadata fields.
 
