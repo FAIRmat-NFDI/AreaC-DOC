@@ -570,7 +570,7 @@ Units	joule
 ```
 
 
-
+<!-- TODO Separate topology creation and put into the general docs -->
 ## Creating a topology (`particles_group`)
 
 This page demonstrates how to create a "standard" topology in H5MD-NOMAD. The demonstrated organization of molecules and monomers is identical to what other NOMAD parsers do to create a topology from native simulation files (e.g., outputs from [GROMACS](https://www.gromacs.org/) or [LAMMPS](https://www.lammps.org)). However, the user is free to deviate from this standard to create arbitrary organizations of particles, as described in [Connectivity](explanation-H5MD-NOMAD.md#the-connectivity-group).

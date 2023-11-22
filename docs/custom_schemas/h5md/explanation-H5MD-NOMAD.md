@@ -7,7 +7,7 @@
 Most computational data in NOMAD is harvested with code-specific parsers that recognize the output files from a particular software and retrieve the appropriate (meta)data accordingly.
 However, this approach is not possible for many modern molecular simulation engines that use fully-flexible scriptable input and non-fixed output files.
 ["HDF5 for molecular data" (H5MD)](http://h5md.nongnu.org/) is a data schema for storage of molecular simulation data, based on the HDF5 file format.
-This page describes an extension of the H5MD schema, denoted H5MD-NOMAD, which adds specificity to several of the H5MD guidelines while also retaining reasonable flexibility. This enables simulation data stored according to the H5MD-NOMAD schema to be stored in the NOMAD repository.
+This page describes an extension of the H5MD schema, denoted H5MD-NOMAD, which adds specificity to several of the H5MD guidelines while also retaining reasonable flexibility. This enables simulation data stored according to the H5MD-NOMAD schema to be stored in the NOMAD.
 
 **Due to the nature of extending upon the original H5MD schema, portions of this doc page was duplicated, extended, or summarized from the [H5MD webpage](http://h5md.nongnu.org/).**
 
@@ -430,16 +430,15 @@ absolute position in space of an *arbitrary* periodic image of that particle. --
 - `image`
 :   <a id="image_anchor"></a>**(currently unused in H5MD-NOMAD)**
 
+# TODO can we make these admonitions indented somehow or more obviously connected with the members of this list?
 ??? details
 
-```{toggle}
     An element that represents periodic images of the box as coordinate vectors
     of `Float` or `Integer` type and allows one to compute for each particle its
     absolute position in space. If `image` is present, `position` must be
     present as well. For time-dependent data, the `step` and `time` datasets of
     `image` must equal those of `position`, which must be accomplished by
     hard-linking the respective datasets.
-```
 
 <!-- If the component $k$ of `box/boundary` (see [below](#simulation-box)) is set
 to `none`, the values of the corresponding component $k$ of `image` serve as
