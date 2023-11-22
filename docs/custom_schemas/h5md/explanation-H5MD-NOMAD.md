@@ -7,7 +7,7 @@
 Most computational data in NOMAD is harvested with code-specific parsers that recognize the output files from a particular software and retrieve the appropriate (meta)data accordingly.
 However, this approach is not possible for many modern molecular simulation engines that use fully-flexible scriptable input and non-fixed output files.
 ["HDF5 for molecular data" (H5MD)](http://h5md.nongnu.org/) is a data schema for storage of molecular simulation data, based on the HDF5 file format.
-This page describes an extension of the H5MD schema, denoted H5MD-NOMAD, which adds specificity to several of the H5MD guidelines while also retaining reasonable flexibility. This enables simulation data stored according to the H5MD-NOMAD schema to be parsed and normalized by NOMAD, while also allowing the user some freedom for customization.
+This page describes an extension of the H5MD schema, denoted H5MD-NOMAD, which adds specificity to several of the H5MD guidelines while also retaining reasonable flexibility. This enables simulation data stored according to the H5MD-NOMAD schema to be stored in the NOMAD repository.
 
 **Due to the nature of extending upon the original H5MD schema, portions of this doc page was duplicated, extended, or summarized from the [H5MD webpage](http://h5md.nongnu.org/).**
 
@@ -427,17 +427,19 @@ absolute position in space of an *arbitrary* periodic image of that particle. --
 :   An element that holds the mass for each particle as a scalar of `Float`
     type.
 
-`image`
+- `image`
 :   <a id="image_anchor"></a>**(currently unused in H5MD-NOMAD)**
 
 ??? details
 
+```{toggle}
     An element that represents periodic images of the box as coordinate vectors
     of `Float` or `Integer` type and allows one to compute for each particle its
     absolute position in space. If `image` is present, `position` must be
     present as well. For time-dependent data, the `step` and `time` datasets of
     `image` must equal those of `position`, which must be accomplished by
     hard-linking the respective datasets.
+```
 
 <!-- If the component $k$ of `box/boundary` (see [below](#simulation-box)) is set
 to `none`, the values of the corresponding component $k$ of `image` serve as
@@ -764,7 +766,7 @@ The following observable types are supported:
 :   additional metadata may be given as necessary.
 <!-- TODO - Is this really parsed?! -->
 
-A list of standardized observables can be found [HERE](reference-H5MD-NOMAD.md#standardized-observables-in-h5md-nomad).
+A list of standardized observables can be found in [Reference - H5MD-NOMAD > Standardized observables in H5MD-NOMAD](reference-H5MD-NOMAD.md#standardized-observables-in-h5md-nomad).
 
 
 
@@ -878,6 +880,7 @@ In this way, the H5MD-NOMAD `parameters` group has the following structure:
      \-- ...
 
 The subgroups `force_calculations` and `workflow` are supported. The following describes the detailed data structures for these subgroups, using the NOMAD MetaInfo definitions for each underlying `Quantity`. Please note that:
+<!-- TODO add href to glossary -->
 
 1. Quantities with `type=MEnum()` are restricted to the provided allowed values.
 
@@ -992,7 +995,7 @@ Section containing the parameters for neighbor searching/lists during a molecula
 
 ### The molecular dynamics workflow
 
-The `workflow` group contains the parameters for any type of workflow. Here we describe the specific case of the well-defined `molecular_dynamics` workflow. Custom workflows are described in detail [HERE](../overview.md).
+The `workflow` group contains the parameters for any type of workflow. Here we describe the specific case of the well-defined `molecular_dynamics` workflow. Custom workflows are described in detail in [Workflows in NOMAD](../overview.md).
 
 <a id="md_workflow_template_anchor"></a>
 

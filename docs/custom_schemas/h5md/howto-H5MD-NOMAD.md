@@ -22,7 +22,7 @@ ureg = UnitRegistry()
 : module for reading and writing HDF5 files.
 
 [UnitRegistry](https://pint.readthedocs.io/en/0.10.1/tutorial.html)
-: object from the [pint](https://pint.readthedocs.io/en/stable/) package that provides assistance for working with units. We suggest using this package for easiest compatibility with NOMAD.
+: object from the [pint](https://pint.readthedocs.io/en/stable/) package that provides assistance for working with units. We suggest using this package for easiest compatibility with NOMAD. If you have `nomad-lab` installed, you can alternatively import `ureg` with `from nomad.units import ureg`.
 
 [MDAnalysis](https://www.mdanalysis.org/)
 : a library to analyze trajectories from molecular dynamics simulations stored in various formats.
@@ -32,7 +32,7 @@ ureg = UnitRegistry()
 
 ### Example Data
 
-For concreteness, we consider a fictitious set of "vanilla" molecular dynamics simulations, run with the OpenMM software. The following definitions set the dimensionality, periodicity, and the units for this simulation.
+For concreteness, we consider a fictitious set of "vanilla" molecular dynamics simulations, run with the [OpenMM](https://openmm.org/) software. The following definitions set the dimensionality, periodicity, and the units for this simulation.
 
 ```python
 dimension = 3
@@ -48,7 +48,7 @@ custom_unit = 1.0 * ureg.newton / length_unit**2
 acceleration_unit = 1.0 * length_unit / time_unit**2
 ```
 
-In this example, we will assume that the relevant simulation data is compatible with [MDAnalysis](https://www.mdanalysis.org/), such that a `universe` containing the trajectory and topology information can be created.
+In this example, we will assume that the relevant simulation data is compatible with [MDAnalysis](https://www.mdanalysis.org/), such that a **universe** containing the trajectory and topology information can be created.
 
 !!! Note
 
@@ -179,7 +179,7 @@ connectivity['impropers'] = universe_toponly.impropers._bix  # shape = (n_improp
 ```
 Here `n_bonds`, `n_angles`, `n_dihedrals`, and `n_impropers` represent the corresponding number of instances of each interaction within the force field.
 
-The creation of the `particles_group` group (i.e., topology) is discussed [HERE](#creating-a-topology-particles_group)
+You can read more about the creation of the hierarchical `particles_group` in [Creating a topology](#creating-a-topology-particles_group).
 
 
 ### [Observables Group](explanation-H5MD-NOMAD.md#the-observables-group)
@@ -407,9 +407,9 @@ for key in msds.keys():
 
 ### [Parameter Group](explanation-H5MD-NOMAD.md#the-parameters-group)
 
-Using the json templates for [force calculations](../parameters.md#force_calculation_template_anchor) and [molecular dynamics workflows](explanation-H5MD-NOMAD.md#the-observables-group#md_workflow_template_anchor), the (meta)data can be written to the H5MD-NOMAD file using the following code:
+Using the json templates for [force calculations](parameters.md#force_calculation_template_anchor) and [molecular dynamics workflows](explanation-H5MD-NOMAD.md#md_workflow_template_anchor), the (meta)data can be written to the H5MD-NOMAD file using the following code:
 
-First, import the templates:
+First, import the data extracted from the JSON templates:
 ```python
 with open('force_calculations_metainfo.json') as json_file:
     force_calculation_parameters = json.load(json_file)
@@ -452,7 +452,7 @@ force_calculations = get_parameters_recursive(force_calculations, force_calculat
 workflow = get_parameters_recursive(workflow, workflow_parameters)
 ```
 
-It's as simple as that! Now, we can [upload our H5MD-NOMAD file directly to NOMAD](../../uploading_and_publishing_data/overview.md) and all the written (meta)data will be stored according to the standard NOMAD schema.
+It's as simple as that! Now, we can [upload our H5MD-NOMAD file directly to NOMAD](../../uploading_and_publishing/overview.md) and all the written (meta)data will be stored according to the standard NOMAD schema.
 
 
 
@@ -573,7 +573,8 @@ Units	joule
 
 ## Creating a topology (`particles_group`)
 
-This page demonstrates how to create a "standard" topology in H5MD-NOMAD. The demonstrated organization of molecules and monomers is identical to what other NOMAD parsers do to create a topology from native simulation files (e.g., outputs from Gromacs or Lammps). However, the user is free to deviate from this standard to create arbitrary organizations of particles, as described in [Connectivity](explanation-H5MD-NOMAD.md#the-connectivity-group).
+This page demonstrates how to create a "standard" topology in H5MD-NOMAD. The demonstrated organization of molecules and monomers is identical to what other NOMAD parsers do to create a topology from native simulation files (e.g., outputs from [GROMACS](https://www.gromacs.org/) or [LAMMPS](https://www.lammps.org)). However, the user is free to deviate from this standard to create arbitrary organizations of particles, as described in [Connectivity](explanation-H5MD-NOMAD.md#the-connectivity-group).
+<!-- TODO add hrefs to "writing a parser plugin" section when you say "NOMAD parsers" -->
 
 ### Standard topology structure for bonded force fields
 
@@ -602,7 +603,8 @@ topology
 └── ...
 ```
 Here, the first level of organization is the "molecule group". Molecule groups contain molecules of the same type. In other words, `molecule_group_1` and `molecule_group_2` represent distinct molecule types. At the next level of the hierarchy, each molecule within this group is stored (i.e., `molecule_1`, `molecule_2`, etc.). In the above example, `molecule_group_1` represents a polymer (or protein). Thus, below the molecule level, there is a "monomer group level". Similar to the molecule group, the monomer group organizes all monomers (of the parent molecule) that are of the same type. Thus, for `molecule_1` of `molecule_group_1`, `monomer_group_1` and `monomer_group_2` represent distinct types of monomers existing within the polymer. Then, below `monomer_group_1`, each monomer within this group is stored. Finally, beneath these individual monomers, only the metadata for that monomer is stored (i.e., no further organization levels). Note however, that metadata can be (and is) stored at each level of the hierarchy, but is left out of the illustration for clarity. Notice also that `molecule_group_2` is not a polymer. Thus, each molecule within this group stores only the corresponding metadata, and no further levels of organization.
-<!-- TODO - add image of topology bar in overview page? Here or maybe when the topology is introduced on the connectivity page? -->
+<!-- TODO - add image of topology bar in overview page? Here or maybe when the topology is introduced on the connectivity page?
+add full explanation and reference about what Topology/Groups mean in NOMAD -->
 
 ### Creating the standard hierarchy from an MDAnalysis universe
 We start from the perspective of the [Writing an HDF5 file according to H5MD-NOMAD with python](#writing-an-hdf5-file-according-to-h5md-nomad-with-python) section, with identical imports and assuming that an MDAnalysis `universe` is already instantiated from the raw simulation files. As in the previous example, the `universe` containing the topology information is called `universe_topology`.
