@@ -15,23 +15,27 @@ nav:
     - Overview: filtering_and_querying/overview.md
   - Custom schemas:
     - Overview: custom_schemas/overview.md
-    - H5MD:
-      - Overview: custom_schemas/h5md/h5md_overview.md
-      - Root: custom_schemas/h5md/root.md
-      - H5MD: custom_schemas/h5md/h5md.md
-      - Particles: custom_schemas/h5md/particles.md
-      - Observables: custom_schemas/h5md/observables.md
-      - Connectivity: custom_schemas/h5md/connectivity.md
-      - Parameters: custom_schemas/h5md/parameters.md
-      - Units: custom_schemas/h5md/units.md
-      - Examples:
-        - Writing an H5MD-NOMAD file: custom_schemas/h5md/examples/writing_h5md-nomad.md
-        - Creating a topology: custom_schemas/h5md/examples/creating_a_topology.md
-        - Accessing an H5MD-NOMAD file: custom_schemas/h5md/examples/testing_h5md-nomad.md
-      - References:
-        - Quick Start - H5MD basics: custom_schemas/h5md/references/quick_H5MD_basics.md
-        - Notable changes from H5MD to H5MD-NOMAD: custom_schemas/h5md/references/unsupported.md
-        - Standardized observables: custom_schemas/h5md/references/standard_observables.md
+    - H5MD-NOMAD:
+      # - Overview: custom_schemas/h5md/h5md_overview.md
+      # - How-to guides:
+      #   - How to write an H5MD-NOMAD file: custom_schemas/h5md/examples/writing_h5md-nomad.md
+      #   - How to create a topology: custom_schemas/h5md/examples/creating_a_topology.md
+      #   - How to access an H5MD-NOMAD file: custom_schemas/h5md/examples/testing_h5md-nomad.md
+      - How-to - Work with H5MD-NOMAD: custom_schemas/h5md/howto-H5MD-NOMAD.md
+      - Explanation - File structure and schema: custom_schemas/h5md/explanation-H5MD-NOMAD.md
+      - Reference - H5MD-NOMAD: custom_schemas/h5md/reference-H5MD-NOMAD.md
+      # - Explanation - The H5MD-NOMAD schema:
+      #   - Basics: custom_schemas/h5md/quick_H5MD_basics.md
+      #   - Root: custom_schemas/h5md/root.md
+      #   - H5MD: custom_schemas/h5md/h5md.md
+      #   - Particles: custom_schemas/h5md/particles.md
+      #   - Observables: custom_schemas/h5md/observables.md
+      #   - Connectivity: custom_schemas/h5md/connectivity.md
+      #   - Parameters: custom_schemas/h5md/parameters.md
+      #   - Units: custom_schemas/h5md/units.md
+      # - References:
+      #   - Notable changes from H5MD to H5MD-NOMAD: custom_schemas/h5md/references/unsupported.md
+      #   - Standardized observables: custom_schemas/h5md/references/standard_observables.md
   - Writing a parser plugin:
     - Overview: writing_a_parser_plugin/parser_plugin_overview.md
     - Creating the framework for your parser: writing_a_parser_plugin/parser_shell.md
@@ -106,7 +110,7 @@ markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji 
+      emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
 extra_css:
   - stylesheets/extra.css

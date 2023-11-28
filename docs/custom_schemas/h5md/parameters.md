@@ -10,7 +10,7 @@ The initial H5MD proposed a simple and flexible schema for the storage of genera
      |    \-- ...
      \-- ...
 
-In contrast, the H5MD-NOMAD schema calls for very specific structures to be used when storing parameter information. While the previous groups have attempted to stay away from enforcing NOMAD-specific data structures on the user, instead opting for more intuitive and generally-convenient structures, the `parameters` group utilizes already-existing metadata and structures within NOMAD to efficiently import simulation parameters in a way that is searcheable and comparable to simulations performed by other users.
+In contrast, the H5MD-NOMAD schema calls for very specific structures to be used when storing parameter information. While the previous groups have attempted to stay away from enforcing NOMAD-specific data structures on the user, instead opting for more intuitive and generally-convenient structures, the `parameters` group utilizes already-existing metadata and structures within NOMAD to efficiently import simulation parameters in a way that is searchable and comparable to simulations performed by other users.
 
 In this way, the H5MD-NOMAD `parameters` group has the following structure:
 
@@ -30,7 +30,7 @@ The subgroups `force_calculations` and `workflow` are supported. The following p
 
 ## Force calculations
 
-The `force_calculations` group contains the parameters for force calculations according to the a force field during a molecular dynamics run.
+The `force_calculations` group contains the parameters for force calculations according to the force field during a molecular dynamics run.
 
 <a id="force_calculation_template_anchor"></a>
 

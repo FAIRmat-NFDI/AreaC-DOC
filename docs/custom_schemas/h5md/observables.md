@@ -21,20 +21,32 @@ The initial H5MD proposed a simple and flexible schema for the general storage o
 
 <a id="obs_para2"></a>
 
-As depicted above, observables representing only a subset of the particles may be stored in appropriate subgroups similarly to the `particles` tree. H5MD-NOMAD **does** support the organization of observables into subgroups (as discussed in more detail below). However, **grouping by particle groups is not fully supported** in the sense that there is currently no metadata storing the corresponding indices of the relevant particles subgroup. Additionally, since [only the `all` particles group is parsed](particles.md#the-particles-group), information about the named subgroup will not be stored anywhere in the archive. *Thus, we recommend for now that only observables relevant to the `all` particles subgroup are stored within this section.*
+As depicted above, observables representing only a subset of the particles may be stored in appropriate subgroups similar to the `particles` tree. H5MD-NOMAD **does** support the organization of observables into subgroups (as discussed in more detail below). However, **grouping by particle groups is not fully supported** in the sense that there is currently no metadata storing the corresponding indices of the relevant particles subgroup. Additionally, since [only the `all` particles group is parsed](particles.md#the-particles-group), information about the named subgroup will not be stored anywhere in the archive. *Thus, we recommend for now that only observables relevant to the `all` particles subgroup are stored within this section.*
 <!-- TODO - not sure about this, it might be fine if you can add additional metadata that is stored -->
 
 ## H5MD-NOMAD observables
 
-H5MD-NOMAD extends H5MD observable storage by 1. specifying standard observable types with associated metadata and 2. providing standarized specifications for some common observables.
-The observable type is provided as an attribute to the particular observable subgroup:
+H5MD-NOMAD extends H5MD observable storage by 1. specifying standard observable types with associated metadata and 2. providing standardized specifications for some common observables. In contrast to the schema above, a more restrictive structure is required:
 
     observables
-     \-- <observable_subgroup>
-     |    +-- type: String[]
+     \-- <observable_type_1>
+     |    \-- <observable_1_label_1>
+     |    |    +-- type: String[]
+     |    |    \-- ...
+     \-- <observable_type_2>
+     |    \-- <observable_2_label_1>
+     |    |    +-- type: String[]
+     |    |    \-- ...
+     |    \-- <observable_2_label_2>
+     |    |    +-- type: String[]
+     |    |    \-- ...
      |    \-- ...
      \-- ...
 
+Here, each `observable_type` corresponds to a particular group of observables, e.g., to be plotted together in a single plot. The given name for this group could be generic, e.g., `radial distribution function`, or more specific, e.g., `molecular radial distribution function for solvents`. The latter may be useful in case multiple groupings of a single type of observable are needed.
+Each `observable_label` then corresponds to a specific name for an individual instance of this observable type. For example, for a radial distribution function between particles of type `A` and `B`, `observable_label` might be set to `A-B`.
+
+Finally, H5MD-NOMAD has added the observable `type` as an attribute of each observable:
 The following observable types are supported:
 
 <a id="configurational_observable_anchor"></a>
@@ -44,10 +56,12 @@ The following observable types are supported:
 
     observables
      \-- <configurational_subgroup>
-     |    +-- type: "configurational"
-     |    \-- step: Integer[N_frames]
-     |    \-- time: Float[N_frames]
-     |    \-- value: <type>[N_frames][M]
+     |    \-- <label_1>
+     |    |    +-- type: "configurational"
+     |    |    \-- step: Integer[N_frames]
+     |    |    \-- time: Float[N_frames]
+     |    |    \-- value: <type>[N_frames][M]
+     |    \-- ...
      \-- ...
  where `M` is the dimension of the observable. This section may also be used to store per-particle quantities/attributes that are not currently supported as [standardized H5MD-NOMAD elements for particles group](particles.md#standardized-h5md-nomad-elements-for-particles-group), in which case `value` will have dimensions `[N_frames][N_part][M]`.
 
@@ -58,35 +72,33 @@ The following observable types are supported:
 
     observables
      \-- <ensemble_average_subgroup>
-     |    +-- type: "ensemble_average"
-     |    \-- (label): String[]
-     |    \-- (n_variables): Integer
-     |    \-- (variables_name): String[n_variables][]
-     |    \-- (n_bins): Integer[]
-     |    \-- bins: Float[n_bins][]
-     |    \-- value: <type>[n_bins][]
-     |    \-- (frame_start): Integer
-     |    \-- (frame_end): Integer
-     |    \-- (n_smooth): Integer
-     |    \-- (type): String[]
-     |    \-- (error_type): String[]
-     |    \-- (errors): Float[n_bins]
-     |    \-- (error_labels): String[]
-     |    \-- (frame_end): Integer
-     |    \-- (<custom_dataset>): <type>[]
+     |    \-- <label_1>
+     |    |    +-- type: "ensemble_average"
+     |    |    \-- (n_variables): Integer
+     |    |    \-- (variables_name): String[n_variables][]
+     |    |    \-- (n_bins): Integer[]
+     |    |    \-- bins: Float[n_bins][]
+     |    |    \-- value: <type>[n_bins][]
+     |    |    \-- (frame_start): Integer
+     |    |    \-- (frame_end): Integer
+     |    |    \-- (n_smooth): Integer
+     |    |    \-- (type): String[]
+     |    |    \-- (error_type): String[]
+     |    |    \-- (errors): Float[n_bins]
+     |    |    \-- (error_labels): String[]
+     |    |    \-- (frame_end): Integer
+     |    |    \-- (<custom_dataset>): <type>[]
+     |    \-- ...
      \-- ...
 
-* `label`
-:   describes the particles involved in determining the property. For example, for a radial distribution function between particles of type `A` and `B`, `label` might be set to `A-B`
-
 * `n_variables`
-:   dimensionality of the observable. Can also be infered from leading dimension of `bins`.
+:   dimensionality of the observable. Can also be inferred from leading dimension of `bins`.
 
 * `variables_name`
 :   name/description of the independent variables along which the observable is defined.
 
 * `n_bins`
-:   number of bins along each dimension of the observable. Either single Integer for 1-D observables, or a list of Integers for multi-dimensional observable. Can also be infered from dimensions of `bins`.
+:   number of bins along each dimension of the observable. Either single Integer for 1-D observables, or a list of Integers for multi-dimensional observable. Can also be inferred from dimensions of `bins`.
 
 * `bins`
 :   value of the bins used for calculating the observable along each dimension of the observable.
@@ -123,21 +135,22 @@ The following observable types are supported:
 <a id="time_correlation_observable_anchor"></a>
 
 `time_correlation`
-:   An obervable that is computed by calculating correlations between configurations in time, with the following general structure:
+:   An observable that is computed by calculating correlations between configurations in time, with the following general structure:
 
     observables
      \-- <time_correlation_subgroup>
-     |    +-- type: "time_correlation"
-     |    \-- (label): String[]
-     |    \-- (direction): String[]
-     |    \-- (n_times): Integer[]
-     |    \-- times: Float[n_times][]
-     |    \-- value: <type>[n_bins][]
-     |    \-- (type): String[]
-     |    \-- (error_type): String[]
-     |    \-- (errors): Float[n_bins]
-     |    \-- (error_labels): String[]
-     |    \-- (<custom_dataset>): <type>[]
+     |    \-- <label_1>
+     |    |    +-- type: "time_correlation"
+     |    |    \-- (direction): String[]
+     |    |    \-- (n_times): Integer[]
+     |    |    \-- times: Float[n_times][]
+     |    |    \-- value: <type>[n_bins][]
+     |    |    \-- (type): String[]
+     |    |    \-- (error_type): String[]
+     |    |    \-- (errors): Float[n_bins]
+     |    |    \-- (error_labels): String[]
+     |    |    \-- (<custom_dataset>): <type>[]
+     |    \-- ...
      \-- ...
 
 * `label`
@@ -147,7 +160,7 @@ The following observable types are supported:
 :   allowed values of `x`, `y`, `z`, `xy`, `yz`, `xz`, `xyz`. The direction/s used for calculating the correlation function.
 
 * `n_times`
-:   number of times windows for the calculation of the correlation function. Can also be infered from dimensions of `times`.
+:   number of times windows for the calculation of the correlation function. Can also be inferred from dimensions of `times`.
 
 * `times`
 :   time values used for calculating the correlation function (i.e., &Delta;t values).

@@ -18,7 +18,7 @@ ureg = UnitRegistry()
 : module for reading and writing HDF5 files.
 
 [UnitRegistry](https://pint.readthedocs.io/en/0.10.1/tutorial.html)
-: object from the [pint](https://pint.readthedocs.io/en/stable/) package that provides assistance for working with units. We suggest using this package for easiest compatability with NOMAD.
+: object from the [pint](https://pint.readthedocs.io/en/stable/) package that provides assistance for working with units. We suggest using this package for easiest compatibility with NOMAD.
 
 [MDAnalysis](https://www.mdanalysis.org/)
 : a library to analyze trajectories from molecular dynamics simulations stored in various formats.
@@ -176,7 +176,7 @@ The creation of the `particles_group` group (i.e., topology) is discussed [HERE]
 
 ## [Observables Group](../observables.md)
 
-For this section, we will consider sets of fabricated observable data for clarity. First, create the `obervables` group under root:
+For this section, we will consider sets of fabricated observable data for clarity. First, create the `observables` group under root:
 ```python
 observables = h5_write.create_group('observables')
 ```

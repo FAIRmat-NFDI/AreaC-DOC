@@ -1,4 +1,4 @@
-# Standardized observables in H5MD
+# Standardized observables in H5MD-NOMAD
 
 ## configurational
 

@@ -2,7 +2,7 @@
 
 In order to effectively parse and normalize the molecular simulation data, the H5MD-NOMAD schema extends the original H5MD framework while also enforces various restrictions to the schema. This page contains a list of such additions and restrictions. Here we distinguish between "unused" features, i.e., metadata that will be ignored by NOMAD and "unsupported" features, i.e., structures that will likely cause an error if used within an H5MD-NOMAD file for upload to NOMAD.
 
-## New or ammended features
+## New or amended features
 
 * [additional standardized particles group elements](../particles.md#standardized-h5md-nomad-elements-for-particles-group)
 
