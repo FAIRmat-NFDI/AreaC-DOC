@@ -60,6 +60,7 @@ nav:
   - Current and planned features:
     - Overview: current_and_planned_features/overview.md
   - Glossary of terms: glossary/glossary.md
+  - FAQ: frequently_answered_questions/faq_overwiew.md
   - Contact: contact.md
 theme:
   name: material
@@ -98,7 +99,9 @@ markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
-  - pymdownx.snippets
+  - pymdownx.snippets:
+      base_path: docs
+  - pymdownx.tabbed
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
